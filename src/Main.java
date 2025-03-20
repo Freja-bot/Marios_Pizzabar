@@ -54,14 +54,14 @@ public class Main {
     }
 
     public static void startProgram(Scanner scanner){
-        int choiceBoundary = 2;
+        int choiceAmount = 2;
         int userChoice;
         boolean isrunning = true;
-        Controller controller = new Controller(scanner, choiceBoundary);
+        Controller controller = new Controller(scanner);
 
         while (isrunning) {
 
-            userChoice = controller.getUserInput(choiceBoundary);
+            userChoice = controller.getUserInput(choiceAmount);
             System.out.println(userChoice);
 
             switch (userChoice) {
