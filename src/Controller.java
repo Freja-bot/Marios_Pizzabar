@@ -24,7 +24,7 @@ public class Controller {
 
     //Overloading to allow for more choice in boundaries
     public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary) {
-        int userInput = choiceUpperBoundary+1;
+        int userInput = choiceUpperBoundary + 1;
 
         do {
             if (!(this.scanner.hasNextInt())) {
@@ -32,8 +32,9 @@ public class Controller {
                 continue;
             }
             userInput = this.scanner.nextInt();
+            this.scanner.nextLine();
 
-        } while (userInput > choiceUpperBoundary ||userInput < choiceLowerBoundary);
+        } while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
 
         return userInput;
     }
