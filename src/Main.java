@@ -54,19 +54,24 @@ public class Main {
     }
 
     public static void startProgram(Scanner scanner){
-        final int choiceBoundary = 2;
+        int choiceBoundary = 2;
         int userChoice;
         boolean isrunning = true;
         Controller controller = new Controller(scanner, choiceBoundary);
 
         while (isrunning) {
 
-            userChoice = controller.getUserInput(scanner);
+            userChoice = controller.getUserInput(choiceBoundary);
             System.out.println(userChoice);
 
             switch (userChoice) {
                 case 1: {
-                    System.out.println("Tilføjer ordre");
+                    System.out.println("Indtast afhentingstidspunktet\nTime:");
+                    int hour = controller.getUserInput(23,0);
+                    System.out.println("Minut:");
+                    int minute = controller.getUserInput(59,0);
+                    controller.newOrder(hour, minute);
+
                     break;
                 }
                 case 2: {
