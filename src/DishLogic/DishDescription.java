@@ -34,6 +34,14 @@ public class DishDescription implements Comparable<DishDescription>{
         return dishID;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
     public String addToFile() {
         return dishID + ":" + name + ":" + price;
     }

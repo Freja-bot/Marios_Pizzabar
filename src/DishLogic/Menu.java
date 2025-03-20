@@ -6,6 +6,13 @@ import java.util.Collections;
 public class Menu {
     private static ArrayList<DishDescription> menu = new ArrayList<>();
 
+
+    public static void showMenu() {
+        for (DishDescription d : menu) {
+            System.out.println(d.toString());
+        }
+    }
+
     public static void loadMenuFromFile(String file) {
         Ledger.getMenuFromFile(file);
     }
@@ -35,19 +42,14 @@ public class Menu {
         }
     }
 
-    public static void showMenu() {
-        for (DishDescription d : menu) {
-            System.out.println(d.toString());
-        }
-    }
 
     public static ArrayList<DishDescription> getMenu() {
         return menu;
     }
 
-    public static void sort(String fileName){
+    public static void sort(String file){
         Collections.sort(menu);
-        Ledger.sortMenu(menu,fileName);
+        Ledger.sortMenu(menu,file);
     }
 
 }
