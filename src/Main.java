@@ -1,4 +1,5 @@
 import DishLogic.DishDescription;
+import DishLogic.Ledger;
 import DishLogic.Menu;
 
 import java.util.Scanner;
@@ -7,9 +8,17 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.println("1 - new file, 2 - existing file");
+        int fileChoice = sc.nextInt();
+        sc.nextLine();
         System.out.println("enter filename");
         String fileName = sc.nextLine();
-        Menu.loadMenuFromFile(fileName);
+        if (fileChoice == 1) {
+            Ledger.createFile(fileName);
+        }
+        if (fileChoice == 2) {
+            Menu.loadMenuFromFile(fileName);
+        }
         /*DishDescription dd = new DishDescription(1, "Pizza", 599);
         DishDescription vin = new DishDescription(2, "Vin", 99);
         DishDescription de = new DishDescription(3,"vand",49.99);*/
@@ -21,13 +30,13 @@ public class Main {
             if (choice == 1) {
                 Menu.showMenu();
             }
-            if(choice==2){
+            if (choice == 2) {
                 System.out.println("enter id to remove");
                 int remove = sc.nextInt();
                 sc.nextLine();
-                Menu.removeDish(remove,fileName);
+                Menu.removeDish(remove, fileName);
             }
-            if(choice==3){
+            if (choice == 3) {
                 System.out.println("enter id");
                 int id = sc.nextInt();
                 sc.nextLine();
@@ -35,7 +44,8 @@ public class Main {
                 String name = sc.nextLine();
                 System.out.println("enter price");
                 double price = sc.nextDouble();
-                Menu.addNewDishToMenu(new DishDescription(id,name,price),fileName);
+                sc.nextLine();
+                Menu.addNewDishToMenu(new DishDescription(id, name, price), fileName);
             }
         }
     }
