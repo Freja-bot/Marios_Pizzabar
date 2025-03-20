@@ -3,7 +3,7 @@ package DishLogic;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class DishDescription {
+public class DishDescription implements Comparable<DishDescription>{
 
     private int dishID;
     private String name;
@@ -36,5 +36,10 @@ public class DishDescription {
 
     public String addToFile() {
         return dishID + ":" + name + ":" + price;
+    }
+
+    @Override
+    public int compareTo(DishDescription o) {
+        return dishID-o.getDishID();
     }
 }

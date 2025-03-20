@@ -45,4 +45,9 @@ public class Menu {
         return menu;
     }
 
+    public static void sort(String fileName){
+        Collections.sort(menu);
+        Ledger.sortMenu(menu,fileName);
+    }
+
 }

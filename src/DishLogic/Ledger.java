@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Ledger {
 
 
-    public static void removeDish(int dishID,String file) {
+    public static void removeDish(int dishID, String file) {
         ArrayList<DishDescription> dishList = new ArrayList<>();
         try {
             File myFile = new File(file);
@@ -20,7 +20,7 @@ public class Ledger {
                 dishList.add(dish);
             }
             for (DishDescription d : dishList) {
-                if (d.getDishID()==dishID) {
+                if (d.getDishID() == dishID) {
                     System.out.println("ye");
                     int toRemove = dishList.indexOf(d);
                     dishList.remove(toRemove);
@@ -39,7 +39,7 @@ public class Ledger {
 
     }
 
-    public static void addDishToFile(DishDescription dish,String file) {
+    public static void addDishToFile(DishDescription dish, String file) {
         System.out.println("Write to file");
 
         try {
@@ -85,4 +85,15 @@ public class Ledger {
         }
     }
 
+    public static void sortMenu(ArrayList<DishDescription> dishes, String file) {
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (DishDescription d : dishes) {
+                writer.write(d.addToFile());
+            }
+        } catch (IOException e) {
+            System.out.println("ERROR!!");
+            e.printStackTrace();
+        }
+    }
 }
