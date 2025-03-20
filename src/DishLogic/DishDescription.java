@@ -1,8 +1,5 @@
 package DishLogic;
 
-import java.util.Collections;
-import java.util.Comparator;
-
 public class DishDescription implements Comparable<DishDescription>{
 
     private int dishID;
