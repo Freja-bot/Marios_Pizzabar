@@ -10,22 +10,23 @@ public class Menu {
         Ledger.getMenuFromFile(file);
     }
 
-    public static void addNewDish(DishDescription dish){
+    public static void addNewDish(DishDescription dish) {
         menu.add(dish);
     }
 
     public static void addNewDishToMenu(DishDescription dish, String fileName) {
         for (DishDescription d : menu) {
-            if (d.getDishID() == dish.getDishID())
+            if (d.getDishID() == dish.getDishID()) {
                 System.out.println("Id already exists");
                 return;
+            }
         }
         menu.add(dish);
         Ledger.addDishToFile(dish, fileName);
     }
 
-    public static void removeDish(int dishID,String fileName) {
-        Ledger.removeDish(dishID,fileName);
+    public static void removeDish(int dishID, String fileName) {
+        Ledger.removeDish(dishID, fileName);
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
