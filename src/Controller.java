@@ -19,35 +19,21 @@ public class Controller {
 
     //Looks in console for aa valid int
     public int getUserInput(int choiceBoundary) {
-        int userInput;
-        do {
-
-            if (!(this.scanner.hasNextInt())) {
-                this.scanner.nextLine();
-            }
-            userInput = this.scanner.nextInt();
-
-            /*in the while condition the first condition ensures an int was captured.
-            Because of the logic operator or, the other condition are only checked
-            if an int was captured ensuring no exceptions are trown*/
-        } while (userInput > choiceBoundary || userInput < 1);
-
-        return userInput;
+        return getUserInput(choiceBoundary, 1);
     }
 
     //Overloading to allow for more choice in boundaries
     public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary) {
-        int userInput;
+        int userInput = choiceUpperBoundary+1;
 
         do {
-
             if (!(this.scanner.hasNextInt())) {
                 this.scanner.nextLine();
+                continue;
             }
             userInput = this.scanner.nextInt();
 
-
-        } while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
+        } while (userInput > choiceUpperBoundary ||userInput < choiceLowerBoundary);
 
         return userInput;
     }
