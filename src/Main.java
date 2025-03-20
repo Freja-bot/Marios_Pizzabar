@@ -24,7 +24,7 @@ public class Main {
         DishDescription de = new DishDescription(3,"vand",49.99);*/
 
         while (true) {
-            System.out.println("1 - show menu, 2 - remove dish, 3 add dish");
+            System.out.println("1 - show menu, 2 - remove dish, 3 add dish, 4 sort menu");
             int choice = sc.nextInt();
             sc.nextLine();
             if (choice == 1) {
@@ -46,6 +46,9 @@ public class Main {
                 double price = sc.nextDouble();
                 sc.nextLine();
                 Menu.addNewDishToMenu(new DishDescription(id, name, price), fileName);
+            }
+            if(choice==4){
+                Menu.sort(fileName);
             }
         }
     }
