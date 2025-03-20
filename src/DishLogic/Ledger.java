@@ -89,8 +89,9 @@ public class Ledger {
         try {
             FileWriter writer = new FileWriter(file);
             for (DishDescription d : dishes) {
-                writer.write(d.addToFile());
+                writer.write(d.addToFile() + "\n");
             }
+            writer.close();
         } catch (IOException e) {
             System.out.println("ERROR!!");
             e.printStackTrace();
