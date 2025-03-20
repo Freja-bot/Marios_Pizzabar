@@ -6,11 +6,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Menu.loadMenuFromFile("PizzaMenu.txt");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter filename");
+        String fileName = sc.nextLine();
+        Menu.loadMenuFromFile(fileName);
         /*DishDescription dd = new DishDescription(1, "Pizza", 599);
         DishDescription vin = new DishDescription(2, "Vin", 99);
         DishDescription de = new DishDescription(3,"vand",49.99);*/
-        Scanner sc = new Scanner(System.in);
+
         while (true) {
             System.out.println("1 - show menu, 2 - remove dish, 3 add dish");
             int choice = sc.nextInt();
@@ -22,7 +25,7 @@ public class Main {
                 System.out.println("enter id to remove");
                 int remove = sc.nextInt();
                 sc.nextLine();
-                Menu.removeDish(remove,"PizzaMenu.txt");
+                Menu.removeDish(remove,fileName);
             }
             if(choice==3){
                 System.out.println("enter id");
@@ -32,7 +35,7 @@ public class Main {
                 String name = sc.nextLine();
                 System.out.println("enter price");
                 double price = sc.nextDouble();
-                Menu.addNewDishToMenu(new DishDescription(id,name,price),"PizzaMenu.txt");
+                Menu.addNewDishToMenu(new DishDescription(id,name,price),fileName);
             }
         }
     }
