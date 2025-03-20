@@ -8,7 +8,50 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        startProgram(sc);
+        Controller controller = new Controller(sc);
+        System.out.println("1 - new file, 2 - existing file");
+        int fileChoice = controller.getUserInput(2);
+        System.out.println("enter filename");
+        String fileName = sc.nextLine();
+        if (fileChoice == 1) {
+            Ledger.createFile(fileName);
+        }
+        if (fileChoice == 2) {
+            Menu.loadMenuFromFile(fileName);
+        }
+        /*DishDescription dd = new DishDescription(1, "Pizza", 599);
+        DishDescription vin = new DishDescription(2, "Vin", 99);
+        DishDescription de = new DishDescription(3,"vand",49.99);*/
+
+        while (true) {
+            System.out.println("0 - Exit, 1 - show menu, 2 - remove dish, 3 - add dish, - 4 sort menu, 5 - add order");
+            int choice = controller.getUserInput(5, 0);
+
+            if (choice == 0) {
+                break;
+            } else if (choice == 1) {
+                Menu.showMenu();
+            } else if (choice == 2) {
+                System.out.println("enter id to remove");
+                int remove = sc.nextInt();
+                sc.nextLine();
+                Menu.removeDish(remove, fileName);
+            } else if (choice == 3) {
+                System.out.println("enter id");
+                int id = sc.nextInt();
+                sc.nextLine();
+                System.out.println("enter name");
+                String name = sc.nextLine();
+                System.out.println("enter price");
+                double price = sc.nextDouble();
+                sc.nextLine();
+                Menu.addNewDishToMenu(new DishDescription(id, name, price), fileName);
+            } else if (choice == 4) {
+                Menu.sort(fileName);
+            } else if (choice == 5) {
+                startProgram(sc);
+            }
+        }
     }
 
 
@@ -29,7 +72,7 @@ public class Main {
                     int hour = controller.getUserInput(23, 0);
                     System.out.println(hour);
                     System.out.println("Minut:");
-                    int minute = controller.getUserInput(59);
+                    int minute = controller.getUserInput(59, 0);
                     //controller.newOrder(hour, minute);
                     System.out.println(hour);
                     System.out.println(minute);
@@ -46,8 +89,6 @@ public class Main {
                 }
             }
         }
-
-        scanner.close();
     }
 }
 
