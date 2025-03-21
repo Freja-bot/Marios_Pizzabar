@@ -1,3 +1,7 @@
+import DishLogic.DishDescription;
+import DishLogic.Menu;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Controller {
 
@@ -9,7 +13,7 @@ public class Controller {
     */
 
     private Scanner scanner;
-
+    private ArrayList<DishDescription> menu;
 
     public Controller(Scanner scanner){
         this.scanner = scanner;
@@ -18,31 +22,20 @@ public class Controller {
 
     //Looks in console for aa valid int
     public int getUserInput(int choiceBoundary){
-        int userInput;
-        System.out.println("print activeOrders next to menu\n1. Tilføj odre\n2. Luk program\nVælg en mulighed ve at skrive et tal");
-
-        do {
-            userInput = this.scanner.nextInt();
-            this.scanner.nextLine();
-
-            /*in the while condition the first condition ensures an int was captured.
-            Because of the logic operator or, the other condition are only checked
-            if an int was captured ensuring no exceptions are trown*/
-        } while (!this.scanner.hasNextInt() || userInput > choiceBoundary || userInput < 1);
-
-
-        return userInput;
+        return getUserInput(choiceBoundary, 1);
     }
 
     //Overloading to allow for more choice in boundaries
     public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary){
         int userInput;
-        System.out.println("print activeOrders next to menu\n1. Tilføj odre\n2. Luk program\nVælg en mulighed ve at skrive et tal");
+
         do {
-            do {
-                userInput = this.scanner.nextInt();
-                this.scanner.nextLine();
-            } while (!this.scanner.hasNextInt());
+            while (!this.scanner.hasNextInt()) {
+
+                this.scanner.next();
+
+            }
+            userInput = this.scanner.nextInt();
         }while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
 
         return userInput;
@@ -50,10 +43,15 @@ public class Controller {
 
 
     public void newOrder(int hour,int minute){
-        Order oder = new Order(hour, minute);
+        menu = Menu.getMenu();
+        Order order = new Order(hour, minute);
         int userChoice;
         do{
-            oder.addDish(1, 2);
+            System.out.println("Skriv rettens nummer");
+            int dishID = getUserInput(menu.size());
+            order.addDish(menu.get(dishID-1), 2);
+            System.out.println("Odre:\n" + order);
+            System.out.println("1. Afslut\n2. Tilføj en ret mere");
             userChoice = getUserInput(2);
         }while (userChoice == 2);
     }
