@@ -51,9 +51,9 @@ public class Main {
             } else if (choice == 5) {
                 startProgram(sc);
             }
+
         }
     }
-
 
     public static void startProgram(Scanner scanner) {
         int choiceAmount = 2;
@@ -69,13 +69,11 @@ public class Main {
             switch (userChoice) {
                 case 1: {
                     System.out.println("Indtast afhentingstidspunktet\nTime:");
-                    int hour = controller.getUserInput(23, 0);
-                    System.out.println(hour);
+                    int hour = controller.getUserInput(23,0);
                     System.out.println("Minut:");
-                    int minute = controller.getUserInput(59, 0);
-                    //controller.newOrder(hour, minute);
-                    System.out.println(hour);
-                    System.out.println(minute);
+                    int minute = controller.getUserInput(59,0);
+                    controller.newOrder(hour, minute);
+
                     break;
                 }
                 case 2: {
@@ -89,6 +87,7 @@ public class Main {
                 }
             }
         }
+
     }
 }
 

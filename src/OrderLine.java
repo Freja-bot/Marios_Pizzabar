@@ -1,14 +1,21 @@
+import DishLogic.DishDescription;
+import DishLogic.Menu;
+
 public class OrderLine {
-    //private Dish dish;
+    private DishDescription dish;
     private int quantity;
 
-    public OrderLine(int dishID, int quantity){
-        //this.dish = new getDich(dishID);
+    public OrderLine(DishDescription dish, int quantity){
+        this.dish = dish;
         this.quantity = quantity;
     }
 
-    /*public int getSubTotal(){
+    public double getSubTotal(){
         return this.dish.getPrice() * quantity;
-    }*/
+    }
 
+    @Override
+    public String toString() {
+        return this.dish.getDishID() + ". " + this.dish.getName() + "   " + this.dish.getPrice() + " kr.\n";
+    }
 }
