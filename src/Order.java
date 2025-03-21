@@ -1,3 +1,5 @@
+import DishLogic.DishDescription;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -23,9 +25,8 @@ public class Order implements Comparable<Order> {
         return this.orderID;
     }
 
-    public void addDish(int dishID, int quantity){
-        OrderLine oderLine = new OrderLine(dishID, quantity);
-
+    public void addDish(DishDescription dish, int quantity){
+        orderLines.add(new OrderLine(dish, quantity));
     }
 
 
@@ -33,4 +34,13 @@ public class Order implements Comparable<Order> {
         return this.collectionTime.compareTo(otherOrder.getCollectionTime());
     }
 
+    public String toString(){
+        StringBuilder orderText = new StringBuilder();
+        for(int i = 0; i < orderLines.size(); i++){
+            orderText.append(orderLines.get(i));
+        }
+        return orderText.toString();
+    }
+
 }
+
