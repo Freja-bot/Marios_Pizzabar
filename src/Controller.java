@@ -1,5 +1,8 @@
-import java.util.Scanner;
+import DishLogic.DishDescription;
+import DishLogic.Menu;
 
+import java.util.ArrayList;
+import java.util.Scanner;
 public class Controller {
 
     /*TODO:
@@ -10,43 +13,47 @@ public class Controller {
     */
 
     private Scanner scanner;
+    private ArrayList<DishDescription> menu;
 
-
-    public Controller(Scanner scanner) {
+    public Controller(Scanner scanner){
         this.scanner = scanner;
 
     }
 
     //Looks in console for aa valid int
-    public int getUserInput(int choiceBoundary) {
+    public int getUserInput(int choiceBoundary){
         return getUserInput(choiceBoundary, 1);
     }
 
     //Overloading to allow for more choice in boundaries
-    public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary) {
-        int userInput = choiceUpperBoundary + 1;
+    public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary){
+        int userInput;
 
         do {
-            if (!(this.scanner.hasNextInt())) {
-                this.scanner.nextLine();
-                continue;
+            while (!this.scanner.hasNextInt()) {
+
+                this.scanner.next();
+
             }
             userInput = this.scanner.nextInt();
-            this.scanner.nextLine();
-
-        } while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
+        }while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
 
         return userInput;
     }
 
 
-    public void newOrder(int hour, int minute) {
-        Order oder = new Order(hour, minute);
+    public void newOrder(int hour,int minute){
+        menu = Menu.getMenu();
+        Order order = new Order(hour, minute);
         int userChoice;
-        do {
-            oder.addDish(1, 2);
+        do{
+            System.out.println("Skriv rettens nummer");
+            int dishID = getUserInput(menu.size());
+            order.addDish(menu.get(dishID-1), 2);
+            System.out.println("Odre:\n" + order);
+            System.out.println("1. Afslut\n2. Tilføj en ret mere");
             userChoice = getUserInput(2);
-        } while (userChoice == 2);
+        }while (userChoice == 2);
     }
 
 }
