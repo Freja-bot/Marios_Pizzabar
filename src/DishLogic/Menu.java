@@ -42,6 +42,15 @@ public class Menu {
         }
     }
 
+    public static DishDescription getDishFromID(int dishID){
+        for (DishDescription d : menu) {
+            if (d.getDishID() == dishID){
+                return d;
+            }
+        }
+        System.out.println("ID findes ikke");
+        return null;
+    }
 
     public static ArrayList<DishDescription> getMenu() {
         return menu;

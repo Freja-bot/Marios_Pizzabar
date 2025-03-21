@@ -21,17 +21,15 @@ public class Ledger {
             }
             for (DishDescription d : dishList) {
                 if (d.getDishID() == dishID) {
-                    System.out.println("ye");
                     int toRemove = dishList.indexOf(d);
                     dishList.remove(toRemove);
                     break;
                 }
             }
-            FileWriter writer = new FileWriter(myFile);
+
             for (int i = 0; i < dishList.size(); i++) {
-                writer.write(dishList.get(i).addToFile() + "\n");
+                writeLineToFile(dishList.get(i).addToFile(),file);
             }
-            writer.close();
         } catch (Exception e) {
             System.out.println("ERROR!!!");
             e.printStackTrace();
@@ -40,18 +38,7 @@ public class Ledger {
     }
 
     public static void addDishToFile(DishDescription dish, String file) {
-        System.out.println("Write to file");
-
-        try {
-            FileWriter writer = new FileWriter(file, true);
-            writer.write(dish.addToFile() + "\n");
-            writer.close();
-            System.out.println("yay");
-        } catch (IOException e) {
-            System.out.println("ERROR!!!");
-            e.printStackTrace();
-        }
-
+        writeLineToFile(dish.addToFile(), file);
     }
 
     public static void getMenuFromFile(String file) {
@@ -96,5 +83,32 @@ public class Ledger {
             System.out.println("ERROR!!");
             e.printStackTrace();
         }
+    }
+
+    public static void addOrderToFile(Order order, String file) {
+        writeLineToFile(order.toString(), file);
+    }
+
+    private static void writeLineToFile(String line, String file) {
+        try {
+            FileWriter writer = new FileWriter(file, true);
+            writer.write(line + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
+    private static void removeLineFromFile(ArrayList<String> lines,String file){
+
+    }
+
+    public static void showActiveOrders(String file) {
+
+    }
+
+    public static void removeOrderFromFile(String file) {
+
     }
 }

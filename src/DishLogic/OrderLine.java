@@ -1,5 +1,4 @@
-import DishLogic.DishDescription;
-import DishLogic.Menu;
+package DishLogic;
 
 public class OrderLine {
     private DishDescription dish;

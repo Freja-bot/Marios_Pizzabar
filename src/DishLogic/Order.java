@@ -1,4 +1,4 @@
-import DishLogic.DishDescription;
+package DishLogic;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

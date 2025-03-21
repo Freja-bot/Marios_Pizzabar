@@ -1,5 +1,6 @@
 import DishLogic.DishDescription;
 import DishLogic.Menu;
+import DishLogic.Order;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,6 +37,7 @@ public class Controller {
 
             }
             userInput = this.scanner.nextInt();
+            this.scanner.nextLine();
         }while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
 
         return userInput;
