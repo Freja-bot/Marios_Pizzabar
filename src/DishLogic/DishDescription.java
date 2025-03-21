@@ -24,7 +24,7 @@ public class DishDescription implements Comparable<DishDescription>{
     }
 
     public String toString() {
-        return dishID + ". " + name + ": " + price + ",-";
+        return dishID + ". " + name + ": " + String.format("%.2f", price) + ",-";
     }
 
     public int getDishID() {
