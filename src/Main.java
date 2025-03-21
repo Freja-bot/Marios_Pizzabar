@@ -24,7 +24,7 @@ public class Main {
         DishDescription de = new DishDescription(3,"vand",49.99);*/
 
         while (true) {
-            System.out.println("1 - show menu, 2 - remove dish, 3 add dish, 4 sort menu");
+            System.out.println("1 - show menu, 2 - remove dish, 3 add dish, 4 sort menu, 5 start program");
             int choice = sc.nextInt();
             sc.nextLine();
             if (choice == 1) {
@@ -50,6 +50,9 @@ public class Main {
             if(choice==4){
                 Menu.sort(fileName);
             }
+            if(choice == 5){
+                startProgram(sc);
+            }
         }
     }
 
@@ -61,6 +64,7 @@ public class Main {
 
         while (isrunning) {
 
+            System.out.println("print activeOrders next to menu\n1. Tilføj odre\n2. Luk program\nVælg en mulighed ved at skrive et tal");
             userChoice = controller.getUserInput(choiceAmount);
             System.out.println(userChoice);
 
@@ -86,7 +90,6 @@ public class Main {
             }
         }
 
-        scanner.close();
     }
 
 }
