@@ -28,18 +28,19 @@ public class Menu {
                 return;
             }
         }
-        menu.add(dish);
+        addNewDish(dish);
         Ledger.addDishToFile(dish, fileName);
     }
 
     public static void removeDish(int dishID, String fileName) {
-        Ledger.removeDish(dishID, fileName);
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
+                Ledger.removeDish(dishID, fileName);
                 return;
             }
         }
+        System.out.println("ID findes ikke");
     }
 
     public static DishDescription getDishFromID(int dishID){

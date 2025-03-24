@@ -42,5 +42,9 @@ public class Order implements Comparable<Order> {
         return orderText.toString();
     }
 
+    public String addToFile(){
+        return "";
+    }
+
 }
 

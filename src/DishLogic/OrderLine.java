@@ -17,4 +17,9 @@ public class OrderLine {
     public String toString() {
         return this.dish.getDishID() + ". " + this.dish.getName() + "   " + this.dish.getPrice() + " kr.\n";
     }
+
+    public String addToFile(){
+        return "";
+    }
+
 }

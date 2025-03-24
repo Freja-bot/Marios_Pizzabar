@@ -11,6 +11,7 @@ public class UserInterface {
 
     public static void startProgram() {
         Menu.loadMenuFromFile(MENU_FILE);
+        ActiveOrders.loadActiveOrders(ACTIVE_ORDERS);
         menuInterface();
     }
 
@@ -19,8 +20,8 @@ public class UserInterface {
         Controller controller = new Controller(scanner);
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("0 - Exit, 1 - Se menuen, 2 - Fjern en ret, 3 - Tilføj en ret, - 4 - Tilføj bestilling");
-            int userChoice = controller.getUserInput(4, 0);
+            System.out.println("0 - Exit, 1 - Se menuen, 2 - Fjern en ret, 3 - Tilføj en ret, 4 - Tilføj bestilling, 5 - Fjern en færdiggjort bestilling, 6 - Se bestillinger");
+            int userChoice = controller.getUserInput(5, 0);
             System.out.println(userChoice);
 
             switch (userChoice) {
@@ -50,6 +51,16 @@ public class UserInterface {
                 }
                 case 4: {
                     newOrder();
+                    break;
+                }
+                case 5: {
+                    System.out.println("Indtast OrderID");
+                    int orderID = controller.getUserInput(50000, 0);
+                    ActiveOrders.removeOrder(orderID,ACTIVE_ORDERS);
+                    break;
+                }
+                case 6:{
+                    ActiveOrders.showOrders();
                     break;
                 }
                 default: {
@@ -97,7 +108,7 @@ public class UserInterface {
 
             switch (userChoice) {
                 case 1: {
-                    Ledger.addOrderToFile(order, ACTIVE_ORDERS);
+                    ActiveOrders.addNewOrderToFile(order, ACTIVE_ORDERS);
                     isRunning = false;
                     break;
                 }

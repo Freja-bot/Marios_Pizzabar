@@ -12,7 +12,7 @@ public class Ledger {
     public static void removeDish(int dishID, String file) {
         ArrayList<String> dishList = new ArrayList<>();
         String toRemove = Menu.getDishFromID(dishID).addToFile();
-        removeLineFromFile(dishList,toRemove,file);
+        removeLineFromFile(dishList, toRemove, file);
     }
 
     public static void addDishToFile(DishDescription dish, String file) {
@@ -78,7 +78,7 @@ public class Ledger {
         }
     }
 
-    private static void removeLineFromFile(ArrayList<String> lines,String toRemove,String file){
+    private static void removeLineFromFile(ArrayList<String> lines, String toRemove, String file) {
         try {
             File myFile = new File(file);
             Scanner reader = new Scanner(myFile);
@@ -94,7 +94,7 @@ public class Ledger {
             }
 
             for (int i = 0; i < lines.size(); i++) {
-                writeLineToFile(lines.get(i),file);
+                writeLineToFile(lines.get(i), file);
             }
         } catch (Exception e) {
             System.out.println("ERROR!!!");
@@ -106,7 +106,7 @@ public class Ledger {
 
     }
 
-    public static void removeOrderFromFile(int OrderID,String file) {
+    public static void removeOrderFromFile(int OrderID, String file) {
 
     }
 }
