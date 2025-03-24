@@ -12,10 +12,10 @@ public class ActiveOrders {
         Ledger.getActiveOrdersFromFile(file);
     }
 
-    public static void removeOrder(int orderID, String file) {
+    public static void removeOrder(int orderID, String file,String file2) {
         Order order = getOrderFromOrderID(orderID);
         Ledger.removeOrderFromFile(orderID, file);
-        Ledger.saveForStatistics(order);
+        Ledger.saveForStatistics(order,file2);
     }
 
     public static void cancelOrder(int orderID,String file){
