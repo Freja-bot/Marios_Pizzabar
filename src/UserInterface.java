@@ -30,6 +30,7 @@ public class UserInterface {
                     break;
                 }
                 case 2: {
+                    System.out.println("Enter ID to remove");
                     int remove = scanner.nextInt();
                     scanner.nextLine();
                     Menu.removeDish(remove, MENU_FILE);

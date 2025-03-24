@@ -35,8 +35,8 @@ public class Menu {
     public static void removeDish(int dishID, String fileName) {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
-                menu.remove(d);
                 Ledger.removeDish(dishID, fileName);
+                menu.remove(d);
                 return;
             }
         }
