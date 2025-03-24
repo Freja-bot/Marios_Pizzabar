@@ -13,7 +13,18 @@ public class ActiveOrders {
     }
 
     public static void removeOrder(int orderID, String file) {
+        Order order = getOrderFromOrderID(orderID);
         Ledger.removeOrderFromFile(orderID, file);
+        Ledger.saveForStatistics(order);
+    }
+
+    public static void cancelOrder(int orderID,String file){
+        for(Order o: orders){
+            if(o.getOrderID()==orderID){
+                Ledger.removeOrderFromFile(orderID,file);
+                orders.remove(o);
+            }
+        }
     }
 
     public static void showOrders() {

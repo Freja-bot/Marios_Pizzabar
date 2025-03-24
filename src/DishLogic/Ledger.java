@@ -64,7 +64,7 @@ public class Ledger {
     }
 
     public static void addOrderToFile(Order order, String file) {
-        writeLineToFile(order.toString(), file);
+        writeLineToFile(order.addToFile(), file);
     }
 
     private static void writeLineToFile(String line, String file) {
@@ -109,4 +109,9 @@ public class Ledger {
     public static void removeOrderFromFile(int OrderID, String file) {
 
     }
+
+    public static void saveForStatistics(Order order,String file){
+        writeLineToFile(order.addToFile(),file);
+    }
+
 }
