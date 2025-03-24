@@ -10,31 +10,9 @@ public class Ledger {
 
 
     public static void removeDish(int dishID, String file) {
-        ArrayList<DishDescription> dishList = new ArrayList<>();
-        try {
-            File myFile = new File(file);
-            Scanner reader = new Scanner(myFile);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                DishDescription dish = new DishDescription(line);
-                dishList.add(dish);
-            }
-            for (DishDescription d : dishList) {
-                if (d.getDishID() == dishID) {
-                    int toRemove = dishList.indexOf(d);
-                    dishList.remove(toRemove);
-                    break;
-                }
-            }
-
-            for (int i = 0; i < dishList.size(); i++) {
-                writeLineToFile(dishList.get(i).addToFile(),file);
-            }
-        } catch (Exception e) {
-            System.out.println("ERROR!!!");
-            e.printStackTrace();
-        }
-
+        ArrayList<String> dishList = new ArrayList<>();
+        String toRemove = Menu.getDishFromID(dishID).addToFile();
+        removeLineFromFile(dishList,toRemove,file);
     }
 
     public static void addDishToFile(DishDescription dish, String file) {
@@ -100,15 +78,35 @@ public class Ledger {
         }
     }
 
-    private static void removeLineFromFile(ArrayList<String> lines,String file){
+    private static void removeLineFromFile(ArrayList<String> lines,String toRemove,String file){
+        try {
+            File myFile = new File(file);
+            Scanner reader = new Scanner(myFile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                lines.add(line);
+            }
+            for (String s : lines) {
+                if (s.equals(toRemove)) {
+                    lines.remove(s);
+                    break;
+                }
+            }
+
+            for (int i = 0; i < lines.size(); i++) {
+                writeLineToFile(lines.get(i),file);
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
+    public static void getActiveOrdersFromFile(String file) {
 
     }
 
-    public static void showActiveOrders(String file) {
-
-    }
-
-    public static void removeOrderFromFile(String file) {
+    public static void removeOrderFromFile(int OrderID,String file) {
 
     }
 }
