@@ -57,7 +57,7 @@ public class UserInterface {
                 case 5: {
                     System.out.println("Indtast OrderID");
                     int orderID = controller.getUserInput(50000, 0);
-                    ActiveOrders.removeOrder(orderID,ACTIVE_ORDERS);
+                    ActiveOrders.removeOrder(orderID,ACTIVE_ORDERS,"Staticstics.txt");
                     break;
                 }
                 case 6: {
