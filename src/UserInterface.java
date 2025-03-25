@@ -6,7 +6,7 @@ public class UserInterface {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Controller controller = new Controller(scanner);
-    private final static String MENU_FILE = "PizzaMenu.txt";
+    private final static String MENU_FILE = "PiizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
 
     public static void startProgram() {
@@ -51,7 +51,7 @@ public class UserInterface {
                     break;
                 }
                 case 4: {
-                    newOrder();
+                    createNewOrder();
                     break;
                 }
                 case 5: {
@@ -76,36 +76,11 @@ public class UserInterface {
         }
     }
 
-    public static void newOrder() {
-        boolean isRunning = true;
-        while (isRunning) {
-            System.out.println("1 - Tilføj odre\n2 - Gå tilbage til Menu");
-            int userChoice = controller.getUserInput(2);
-            System.out.println(userChoice);
-
-            switch (userChoice) {
-                case 1: {
-                    System.out.println("Indtast afhentingstidspunktet\nTime:");
-                    int hour = controller.getUserInput(23, 0);
-                    System.out.println("Minut:");
-                    int minute = controller.getUserInput(59, 0);
-                    createNewOrder(hour, minute);
-                    break;
-                }
-                case 2: {
-                    System.out.println("Gå tilbage til Menu");
-                    isRunning = false;
-                    break;
-                }
-                default: {
-                    System.out.println("Error");
-                    break;
-                }
-            }
-        }
-    }
-
-    public static void createNewOrder(int hour, int minute) {
+    public static void createNewOrder() {
+        System.out.println("Indtast afhentingstidspunktet\nTime:");
+        int hour = controller.getUserInput(23, 0);
+        System.out.println("Minut:");
+        int minute = controller.getUserInput(59, 0);
         Order order = new Order(hour, minute);
         int userChoice = 2;
         boolean isRunning = true;
