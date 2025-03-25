@@ -21,7 +21,7 @@ public class UserInterface {
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("0 - Exit, 1 - Se menuen, 2 - Fjern en ret, 3 - Tilføj en ret, 4 - Tilføj bestilling, 5 - Fjern en færdiggjort bestilling, 6 - Fortryd en bestilling, 7 - Se bestillinger");
-            int userChoice = controller.getUserInput(5, 0);
+            int userChoice = controller.getUserInput(7, 0);
             System.out.println(userChoice);
 
             switch (userChoice) {
@@ -97,7 +97,7 @@ public class UserInterface {
                     int dishID = controller.getUserInput(Menu.getMenu().size());
                     System.out.println("Antal?");
                     int quantity = controller.getUserInput(20);
-                    order.addDish(Menu.getMenu().get(dishID - 1), quantity);
+                    order.addDish(Menu.getDishFromID(dishID), quantity);
                     System.out.println("1 - Afslut\n2 - Tilføj en ret mere");
                     break;
                 }
