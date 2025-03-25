@@ -1,6 +1,7 @@
-import DishLogic.DishDescription;
-import DishLogic.Menu;
+package DishLogic;
 
+//TODO
+//addToFile
 public class OrderLine {
     private DishDescription dish;
     private int quantity;
@@ -16,6 +17,11 @@ public class OrderLine {
 
     @Override
     public String toString() {
-        return this.dish.getDishID() + ". " + this.dish.getName() + "   " + this.dish.getPrice() + " kr.\n";
+        return this.dish.getDishID() + ". " + this.dish.getName() + "  Antal. " + this.quantity + '\n';
     }
+
+    public String addToFile(){
+        return this.dish.getDishID() + "/" + this.quantity;
+    }
+
 }

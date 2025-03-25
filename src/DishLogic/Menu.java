@@ -28,20 +28,30 @@ public class Menu {
                 return;
             }
         }
-        menu.add(dish);
+        addNewDish(dish);
         Ledger.addDishToFile(dish, fileName);
     }
 
     public static void removeDish(int dishID, String fileName) {
-        Ledger.removeDish(dishID, fileName);
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
+                Ledger.removeDish(dishID, fileName);
                 menu.remove(d);
                 return;
             }
         }
+        System.out.println("ID findes ikke");
     }
 
+    public static DishDescription getDishFromID(int dishID){
+        for (DishDescription d : menu) {
+            if (d.getDishID() == dishID){
+                return d;
+            }
+        }
+        System.out.println("ID findes ikke");
+        return null;
+    }
 
     public static ArrayList<DishDescription> getMenu() {
         return menu;
