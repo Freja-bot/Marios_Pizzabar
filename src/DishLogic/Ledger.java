@@ -9,8 +9,9 @@ import java.util.Scanner;
 public class Ledger {
 
     //TODO
-    //metoder der har med Active order at gøre
-    //metoder der har med statistik at gøre
+    //remove active order
+    //cancel active order
+    //save to statistics
 
     public static void removeDish(int dishID, String file) {
         ArrayList<String> dishList = new ArrayList<>();

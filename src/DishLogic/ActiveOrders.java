@@ -10,6 +10,9 @@ public class ActiveOrders {
 
     private static ArrayList<Order> orders = new ArrayList<>();
 
+    //TODO
+    //statistics stuff
+
     public static void loadActiveOrders(String file) {
         ArrayList<String> data =  Ledger.getFileAsArrayListOfStrings(file);
         for(String s : data){
@@ -20,7 +23,7 @@ public class ActiveOrders {
 
     public static void finishOrder(int orderID, String file,String file2) {
         Order order = getOrderFromOrderID(orderID);
-        Ledger.removeOrderFromFile(orderID, file);
+        cancelOrder(orderID,file);
         Ledger.saveForStatistics(order,file2);
     }
 
