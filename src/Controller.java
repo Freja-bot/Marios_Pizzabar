@@ -7,10 +7,7 @@ import java.util.Scanner;
 public class Controller {
 
     /*TODO:
-    - showActiveOrders()
-    - newOrder()
-    - deleteOrder()
-    - finishOrder()
+    - getUniqueID();
     */
 
     private Scanner scanner;

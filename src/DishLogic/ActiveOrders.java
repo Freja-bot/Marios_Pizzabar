@@ -1,15 +1,21 @@
 package DishLogic;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ActiveOrders {
 
     private static ArrayList<Order> orders = new ArrayList<>();
 
     public static void loadActiveOrders(String file) {
-        Ledger.getActiveOrdersFromFile(file);
+        ArrayList<String> data =  Ledger.getFileAsArrayListOfStrings(file);
+        for(String s : data){
+            orders.add(new Order(s));
+        }
+        sort();
     }
 
     public static void finishOrder(int orderID, String file,String file2) {
@@ -35,6 +41,7 @@ public class ActiveOrders {
 
     public static void addNewOrder(Order o) {
         orders.add(o);
+        sort();
     }
 
     public static void addNewOrderToFile(Order o, String file) {
@@ -50,6 +57,10 @@ public class ActiveOrders {
         }
         System.out.println("Bestilling findes ikke");
         return null;
+    }
+
+    private static void sort(){
+        Collections.sort(orders);
     }
 
 }

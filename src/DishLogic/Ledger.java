@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class Ledger {
 
     //TODO
-    //Er createFile nødvendig
     //metoder der har med Active order at gøre
     //metoder der har med statistik at gøre
 
@@ -27,6 +26,7 @@ public class Ledger {
         ArrayList<String> strings = new ArrayList<>();
         try {
             File myFile = new File(file);
+            createFile(file, myFile);
             Scanner reader = new Scanner(myFile);
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
@@ -47,11 +47,11 @@ public class Ledger {
 
     }
 
-    public static void createFile(String file) {
-        File newFile = new File(file);
+    public static void createFile(String fileName, File newFile) {
+
         try {
             if (newFile.createNewFile()) {
-                System.out.println("File create" + newFile.getName());
+                System.out.println("Der er ikke nogen fil der hedder " + fileName + ", opretter en tom menukort" + newFile.getName());
             } else {
                 System.out.println("File already exists");
             }
@@ -76,6 +76,7 @@ public class Ledger {
     }
 
     public static void addOrderToFile(Order order, String file) {
+
         writeLineToFile(order.addToFile(), file);
     }
 
@@ -112,10 +113,6 @@ public class Ledger {
             System.out.println("ERROR!!!");
             e.printStackTrace();
         }
-    }
-
-    public static void getActiveOrdersFromFile(String file) {
-
     }
 
     public static void removeOrderFromFile(int OrderID, String file) {

@@ -17,11 +17,11 @@ public class OrderLine {
 
     @Override
     public String toString() {
-        return this.dish.getDishID() + ". " + this.dish.getName() + "   " + this.dish.getPrice() + " kr.\n";
+        return this.dish.getDishID() + ". " + this.dish.getName() + "  Antal. " + this.quantity + '\n';
     }
 
     public String addToFile(){
-        return "";
+        return this.dish.getDishID() + "/" + this.quantity;
     }
 
 }
