@@ -6,7 +6,7 @@ public class UserInterface {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Controller controller = new Controller(scanner);
-    private final static String MENU_FILE = "PiizzaMenu.txt";
+    private final static String MENU_FILE = "PizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
 
     public static void startProgram() {
