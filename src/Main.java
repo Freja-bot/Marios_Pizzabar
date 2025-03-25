@@ -10,4 +10,3 @@ public class Main {
         UserInterface.startProgram();
     }
 }
-

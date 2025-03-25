@@ -3,7 +3,8 @@ package DishLogic;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
+//TODO
+//addToFile
 public class Order implements Comparable<Order> {
     private int orderID;
     private LocalDate date;

@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 public class Ledger {
 
+    //TODO
+    //Er createFile nødvendig
+    //metoder der har med Active order at gøre
+    //metoder der har med statistik at gøre
 
     public static void removeDish(int dishID, String file) {
         ArrayList<String> dishList = new ArrayList<>();
