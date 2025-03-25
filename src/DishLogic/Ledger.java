@@ -23,20 +23,28 @@ public class Ledger {
         writeLineToFile(dish.addToFile(), file);
     }
 
-    public static void getMenuFromFile(String file) {
-
+    public static ArrayList<String> getFileAsArrayListOfStrings(String file) {
+        ArrayList<String> strings = new ArrayList<>();
         try {
             File myFile = new File(file);
             Scanner reader = new Scanner(myFile);
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
-                DishDescription dish = new DishDescription(data);
-                Menu.addNewDish(dish);
+                strings.add(data);
             }
         } catch (Exception e) {
             System.out.println("ERROR!!!");
             e.printStackTrace();
         }
+        return strings;
+    }
+
+    public static void getMenuFromFile(String file) {
+        ArrayList<String> lines = getFileAsArrayListOfStrings(file);
+        for (String l : lines) {
+            Menu.addNewDish(new DishDescription(l));
+        }
+
     }
 
     public static void createFile(String file) {
@@ -114,8 +122,8 @@ public class Ledger {
 
     }
 
-    public static void saveForStatistics(Order order,String file){
-        writeLineToFile(order.addToFile(),file);
+    public static void saveForStatistics(Order order, String file) {
+        writeLineToFile(order.addToFile(), file);
     }
 
 }
