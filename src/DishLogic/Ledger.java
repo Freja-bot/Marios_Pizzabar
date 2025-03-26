@@ -33,18 +33,10 @@ public class Ledger {
         return strings;
     }
 
-    public static void getMenuFromFile(String file) {
-        ArrayList<String> lines = getFileAsArrayListOfStrings(file);
-        for (String l : lines) {
-            Menu.addNewDish(new DishDescription(l));
-        }
-    }
-
     public static void createFile(String fileName, File newFile) {
-
         try {
             if (newFile.createNewFile()) {
-                System.out.println("Der er ikke nogen fil der hedder " + fileName + ", opretter en tom menukort" + newFile.getName());
+                System.out.println("Der er ikke nogen fil der hedder " + fileName + ", opretter en tom fil" + newFile.getName());
             } else {
                 System.out.println("File already exists");
             }
@@ -55,7 +47,7 @@ public class Ledger {
         }
     }
 
-    public static void sortMenu(ArrayList<DishDescription> dishes, String file) {
+    public static void removeDishFromMenu(ArrayList<DishDescription> dishes, String file) {
         try {
             FileWriter writer = new FileWriter(file);
             for (DishDescription d : dishes) {
@@ -68,7 +60,7 @@ public class Ledger {
         }
     }
 
-    public static void sortOrders(ArrayList<Order> orders,String file){
+    public static void removeOrderFromActiveOrders(ArrayList<Order> orders, String file){
         try {
             FileWriter writer = new FileWriter(file);
             for (Order o : orders) {
@@ -82,7 +74,6 @@ public class Ledger {
     }
 
     public static void addOrderToFile(Order order, String file) {
-
         writeLineToFile(order.addToFile(), file);
     }
 

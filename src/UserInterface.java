@@ -46,7 +46,6 @@ public class UserInterface {
                     double price = scanner.nextDouble();
                     scanner.nextLine();
                     Menu.addNewDishToMenu(new DishDescription(id, name, price), MENU_FILE);
-                    Menu.sort(MENU_FILE);
                     break;
                 }
                 case 4: {

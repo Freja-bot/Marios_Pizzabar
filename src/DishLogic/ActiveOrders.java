@@ -1,8 +1,5 @@
 package DishLogic;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -34,7 +31,8 @@ public class ActiveOrders {
         for (Order o : orders) {
             if (o.getOrderID() == orderID) {
                 orders.remove(o);
-                Ledger.sortOrders(orders, file);
+                Ledger.removeOrderFromActiveOrders(orders, file);
+                sort();
                 return;
             }
         }
