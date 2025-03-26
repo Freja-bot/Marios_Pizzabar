@@ -34,7 +34,6 @@ public class UserInterface {
                     int remove = scanner.nextInt();
                     scanner.nextLine();
                     Menu.removeDish(remove, MENU_FILE);
-                    Menu.sort(MENU_FILE);
                     break;
                 }
                 case 3: {

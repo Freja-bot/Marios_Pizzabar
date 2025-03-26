@@ -36,6 +36,7 @@ public class Menu {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
+                Ledger.sortMenu(menu,fileName);
                 return;
             }
         }
