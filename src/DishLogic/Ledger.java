@@ -9,15 +9,8 @@ import java.util.Scanner;
 public class Ledger {
 
     //TODO
-    //remove active order
-    //cancel active order
     //save to statistics
 
-    public static void removeDish(int dishID, String file) {
-        ArrayList<String> dishList = new ArrayList<>();
-        String toRemove = Menu.getDishFromID(dishID).addToFile();
-        removeLineFromFile(dishList, toRemove, file);
-    }
 
     public static void addDishToFile(DishDescription dish, String file) {
         writeLineToFile(dish.addToFile(), file);
@@ -45,7 +38,6 @@ public class Ledger {
         for (String l : lines) {
             Menu.addNewDish(new DishDescription(l));
         }
-
     }
 
     public static void createFile(String fileName, File newFile) {
@@ -76,6 +68,19 @@ public class Ledger {
         }
     }
 
+    public static void sortOrders(ArrayList<Order> orders,String file){
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (Order o : orders) {
+                writer.write(o.addToFile() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("ERROR!!");
+            e.printStackTrace();
+        }
+    }
+
     public static void addOrderToFile(Order order, String file) {
 
         writeLineToFile(order.addToFile(), file);
@@ -92,36 +97,8 @@ public class Ledger {
         }
     }
 
-    private static void removeLineFromFile(ArrayList<String> lines, String toRemove, String file) {
-        try {
-            File myFile = new File(file);
-            Scanner reader = new Scanner(myFile);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                lines.add(line);
-            }
-            for (String s : lines) {
-                if (s.equals(toRemove)) {
-                    lines.remove(s);
-                    break;
-                }
-            }
-
-            for (int i = 0; i < lines.size(); i++) {
-                writeLineToFile(lines.get(i), file);
-            }
-        } catch (Exception e) {
-            System.out.println("ERROR!!!");
-            e.printStackTrace();
-        }
-    }
-
-    public static void removeOrderFromFile(int OrderID, String file) {
-
-    }
-
-    public static void saveForStatistics(Order order, String file) {
+    /*public static void saveForStatistics(Order order, String file) {
         writeLineToFile(order.addToFile(), file);
-    }
+    }*/
 
 }

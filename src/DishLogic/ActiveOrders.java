@@ -24,16 +24,18 @@ public class ActiveOrders {
     public static void finishOrder(int orderID, String file,String file2) {
         Order order = getOrderFromOrderID(orderID);
         cancelOrder(orderID,file);
-        Ledger.saveForStatistics(order,file2);
+        //Ledger.saveForStatistics(order,file2);
     }
 
     public static void cancelOrder(int orderID,String file){
         for(Order o: orders){
             if(o.getOrderID()==orderID){
-                Ledger.removeOrderFromFile(orderID,file);
                 orders.remove(o);
+                Ledger.sortOrders(orders,file);
+                return;
             }
         }
+        System.out.println("ID findes ikke");
     }
 
     public static void showOrders() {
