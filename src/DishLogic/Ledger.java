@@ -10,7 +10,9 @@ public class Ledger {
 
     //TODO
     //save to statistics
+    private Ledger(){
 
+    }
 
     public static void addDishToFile(DishDescription dish, String file) {
         writeLineToFile(dish.addToFile(), file);

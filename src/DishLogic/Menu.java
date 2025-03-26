@@ -6,6 +6,9 @@ import java.util.Collections;
 public class Menu {
     private static ArrayList<DishDescription> menu = new ArrayList<>();
 
+    private Menu(){
+
+    }
 
     public static void showMenu() {
         for (DishDescription d : menu) {

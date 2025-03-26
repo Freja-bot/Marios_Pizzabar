@@ -10,6 +10,10 @@ public class ActiveOrders {
     //TODO
     //statistics stuff
 
+    private ActiveOrders() {
+
+    }
+
     public static void loadActiveOrders(String file) {
         ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
         for (String s : data) {
@@ -41,7 +45,7 @@ public class ActiveOrders {
 
     public static void showOrders() {
         for (Order o : orders) {
-                System.out.println(o);
+            System.out.println(o);
         }
     }
 
