@@ -9,13 +9,24 @@ public class Controller {
     /*TODO:
     - getUniqueID();
     */
-
+    private static Controller controller = null;
     private Scanner scanner;
     private ArrayList<DishDescription> menu;
 
-    public Controller(Scanner scanner){
-        this.scanner = scanner;
+    private Controller(){
+        this.scanner = new Scanner(System.in);
 
+    }
+
+    public static Controller getInstance(){
+        if(controller == null){
+            controller = new Controller();
+        }
+        return controller;
+    }
+
+    public Scanner getScanner(){
+        return scanner;
     }
 
     //Looks in console for aa valid int
