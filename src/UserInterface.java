@@ -20,50 +20,34 @@ public class UserInterface {
         Controller controller = new Controller(scanner);
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("0 - Exit, 1 - Se menuen, 2 - Fjern en ret, 3 - Tilføj en ret, 4 - Tilføj bestilling, 5 - Fjern en færdiggjort bestilling, 6 - Fortryd en bestilling, 7 - Se bestillinger");
-            int userChoice = controller.getUserInput(7, 0);
+            System.out.println("MENU-KORT");
+            Menu.showMenu();
+            System.out.println("\nAKTIVE BESTILLINGER");
+            ActiveOrders.showOrders();
+            System.out.println("0 - Exit, 1 - Tilføj bestilling, 2 - Fjern en færdiggjort bestilling, 3 - Fortryd en bestilling, 4 - Menu-indstillinger");
+            int userChoice = controller.getUserInput(4, 0);
             System.out.println("Programmet modtog: " + userChoice);
 
             switch (userChoice) {
+
                 case 1: {
-                    Menu.showMenu();
-                    break;
-                }
-                case 2: {
-                    System.out.println("Enter ID to remove");
-                    int remove = scanner.nextInt();
-                    scanner.nextLine();
-                    Menu.removeDish(remove, MENU_FILE);
-                    break;
-                }
-                case 3: {
-                    System.out.println("enter id");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("enter name");
-                    String name = scanner.nextLine();
-                    System.out.println("enter price");
-                    double price = scanner.nextDouble();
-                    scanner.nextLine();
-                    Menu.addNewDishToMenu(new DishDescription(id, name, price), MENU_FILE);
-                    break;
-                }
-                case 4: {
                     createNewOrder();
                     break;
                 }
-                case 5: {
+                case 2: {
                     System.out.println("Indtast OrderID");
                     int orderID = controller.getUserInput(50000, 0);
-                    ActiveOrders.finishOrder(orderID,ACTIVE_ORDERS,"Staticstics.txt");
+                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, "Staticstics.txt");
                     break;
                 }
-                case 6: {
-
+                case 3: {
+                    System.out.println("Indtast OrderID");
+                    int orderID = controller.getUserInput(50000, 0);
+                    ActiveOrders.cancelOrder(orderID, ACTIVE_ORDERS);
                     break;
                 }
-                case 7:{
-                    ActiveOrders.showOrders();
+                case 4: {
+                    menuSettings();
                     break;
                 }
                 default: {
@@ -75,8 +59,11 @@ public class UserInterface {
     }
 
     public static void createNewOrder() {
-        System.out.println("Indtast afhentingstidspunktet\nTime:");
-        int hour = controller.getUserInput(23, 0);
+        System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
+        int hour = controller.getUserInput(23, -1);
+        if(hour==-1){
+            return;
+        }
         System.out.println("Minut:");
         int minute = controller.getUserInput(59, 0);
         Order order = new Order(hour, minute);
@@ -96,7 +83,6 @@ public class UserInterface {
                     System.out.println("Antal?");
                     int quantity = controller.getUserInput(20);
                     order.addDish(Menu.getDishFromID(dishID), quantity);
-                    System.out.println("1 - Afslut\n2 - Tilføj en ret mere");
                     break;
                 }
                 default: {
@@ -105,9 +91,50 @@ public class UserInterface {
                 }
             }
             if (isRunning) {
+                System.out.println("1 - Afslut\n2 - Tilføj en ret mere");
                 userChoice = controller.getUserInput(2);
             }
         }
     }
+
+    public static void menuSettings() {
+        boolean isRunning = true;
+        while (isRunning) {
+            System.out.println("0 - for at gå tilbage, 1 - for at tilføje en ny ret til menuen, 2 - for at fjerne en ret fra menuen");
+            int userChoice = controller.getUserInput(2, 0);
+            switch (userChoice) {
+                case 1: {
+                    System.out.println("enter id , type 0 to cancel");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    if (id == 0) {
+                        break;
+                    }
+                    System.out.println("enter name");
+                    String name = scanner.nextLine();
+                    System.out.println("enter price");
+                    double price = scanner.nextDouble();
+                    scanner.nextLine();
+                    Menu.addNewDishToMenu(new DishDescription(id, name, price), MENU_FILE);
+                    break;
+                }
+                case 2: {
+                    System.out.println("Enter ID to remove - type 0 to cancel");
+                    int remove = scanner.nextInt();
+                    scanner.nextLine();
+                    if (remove == 0) {
+                        break;
+                    }
+                    Menu.removeDish(remove, MENU_FILE);
+                    break;
+                }
+                default: {
+                    isRunning=false;
+                    break;
+                }
+            }
+        }
+    }
+
 }
 
