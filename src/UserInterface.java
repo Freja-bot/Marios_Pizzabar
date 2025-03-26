@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static Controller controller = new Controller(scanner);
+    private static Controller controller = Controller.getInstance();
+    private static Scanner scanner = controller.getScanner();
     private final static String MENU_FILE = "PizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
 
@@ -17,7 +17,6 @@ public class UserInterface {
 
     public static void menuInterface() {
 
-        Controller controller = new Controller(scanner);
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("MENU-KORT");
