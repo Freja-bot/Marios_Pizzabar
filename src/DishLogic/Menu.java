@@ -31,6 +31,10 @@ public class Menu {
                 System.out.println("Id already exists");
                 return;
             }
+            if (d.getName().toLowerCase().equals(dish.getName().toLowerCase())) {
+                System.out.println("Name already exists");
+                return;
+            }
         }
         addNewDish(dish);
         Ledger.addDishToFile(dish, fileName);
@@ -41,16 +45,16 @@ public class Menu {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
-                Ledger.removeDishFromMenu(menu,fileName);
+                Ledger.removeDishFromMenu(menu, fileName);
                 return;
             }
         }
         System.out.println("ID findes ikke");
     }
 
-    public static DishDescription getDishFromID(int dishID){
+    public static DishDescription getDishFromID(int dishID) {
         for (DishDescription d : menu) {
-            if (d.getDishID() == dishID){
+            if (d.getDishID() == dishID) {
                 return d;
             }
         }
@@ -62,7 +66,7 @@ public class Menu {
         return menu;
     }
 
-    public static void sort(){
+    public static void sort() {
         Collections.sort(menu);
     }
 
