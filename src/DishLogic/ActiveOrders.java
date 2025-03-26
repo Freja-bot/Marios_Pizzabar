@@ -6,6 +6,7 @@ import java.util.Collections;
 public class ActiveOrders {
 
     private static ArrayList<Order> orders = new ArrayList<>();
+    private static Order lastRemovedOrder;
 
     //TODO
     //statistics stuff
@@ -45,7 +46,7 @@ public class ActiveOrders {
         }
     }
 
-    public static void addNewOrder(Order o) {
+    private static void addNewOrder(Order o) {
         orders.add(o);
         sort();
     }
@@ -65,6 +66,11 @@ public class ActiveOrders {
         return null;
     }
 
+    public static void restoreLatestRemovedOrder(String file){
+        addNewOrderToFile(lastRemovedOrder,file);
+    }
+
+    private static void sort(){
     private static void sort() {
         Collections.sort(orders);
     }
