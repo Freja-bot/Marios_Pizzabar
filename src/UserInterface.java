@@ -112,10 +112,12 @@ public class UserInterface {
                     }
                     System.out.println("enter name");
                     String name = scanner.nextLine();
+                    System.out.println("enter description");
+                    String description = scanner.nextLine();
                     System.out.println("enter price");
                     double price = scanner.nextDouble();
                     scanner.nextLine();
-                    Menu.addNewDishToMenu(new DishDescription(id, name, price), MENU_FILE);
+                    Menu.addNewDishToMenu(new DishDescription(id, name,description, price), MENU_FILE);
                     break;
                 }
                 case 2: {

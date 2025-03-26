@@ -41,7 +41,7 @@ public class ActiveOrders {
 
     public static void showOrders() {
         for (Order o : orders) {
-            System.out.println(o);
+                System.out.println(o);
         }
     }
 
