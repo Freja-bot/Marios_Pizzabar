@@ -26,6 +26,7 @@ public class ActiveOrders {
         }
         cancelOrder(orderID, file);
         Ledger.saveForStatistics(order, file2);
+        lastRemovedOrder = order;
     }
 
     public static void cancelOrder(int orderID, String file) {
@@ -34,6 +35,7 @@ public class ActiveOrders {
                 orders.remove(o);
                 Ledger.removeOrderFromActiveOrders(orders, file);
                 sort();
+                lastRemovedOrder = o;
                 return;
             }
         }
@@ -70,8 +72,8 @@ public class ActiveOrders {
         addNewOrderToFile(lastRemovedOrder,file);
     }
 
-    private static void sort(){
     private static void sort() {
+
         Collections.sort(orders);
     }
 
