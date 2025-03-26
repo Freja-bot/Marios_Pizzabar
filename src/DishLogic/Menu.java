@@ -14,7 +14,11 @@ public class Menu {
     }
 
     public static void loadMenuFromFile(String file) {
-        Ledger.getMenuFromFile(file);
+        ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
+        for (String s : data) {
+            menu.add(new DishDescription(s));
+        }
+        sort();
     }
 
     public static void addNewDish(DishDescription dish) {
@@ -27,25 +31,30 @@ public class Menu {
                 System.out.println("Id already exists");
                 return;
             }
+            if (d.getName().toLowerCase().equals(dish.getName().toLowerCase())) {
+                System.out.println("Name already exists");
+                return;
+            }
         }
         addNewDish(dish);
         Ledger.addDishToFile(dish, fileName);
+        sort();
     }
 
     public static void removeDish(int dishID, String fileName) {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
-                Ledger.removeDish(dishID, fileName);
                 menu.remove(d);
+                Ledger.removeDishFromMenu(menu, fileName);
                 return;
             }
         }
         System.out.println("ID findes ikke");
     }
 
-    public static DishDescription getDishFromID(int dishID){
+    public static DishDescription getDishFromID(int dishID) {
         for (DishDescription d : menu) {
-            if (d.getDishID() == dishID){
+            if (d.getDishID() == dishID) {
                 return d;
             }
         }
@@ -57,9 +66,8 @@ public class Menu {
         return menu;
     }
 
-    public static void sort(String file){
+    public static void sort() {
         Collections.sort(menu);
-        Ledger.sortMenu(menu,file);
     }
 
 }

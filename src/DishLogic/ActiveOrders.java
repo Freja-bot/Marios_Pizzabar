@@ -1,8 +1,5 @@
 package DishLogic;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -10,32 +7,41 @@ public class ActiveOrders {
 
     private static ArrayList<Order> orders = new ArrayList<>();
 
+    //TODO
+    //statistics stuff
+
     public static void loadActiveOrders(String file) {
-        ArrayList<String> data =  Ledger.getFileAsArrayListOfStrings(file);
-        for(String s : data){
+        ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
+        for (String s : data) {
             orders.add(new Order(s));
         }
         sort();
     }
 
-    public static void finishOrder(int orderID, String file,String file2) {
+    public static void finishOrder(int orderID, String file, String file2) {
         Order order = getOrderFromOrderID(orderID);
-        Ledger.removeOrderFromFile(orderID, file);
-        Ledger.saveForStatistics(order,file2);
+        if (order == null) {
+            return;
+        }
+        cancelOrder(orderID, file);
+        Ledger.saveForStatistics(order, file2);
     }
 
-    public static void cancelOrder(int orderID,String file){
-        for(Order o: orders){
-            if(o.getOrderID()==orderID){
-                Ledger.removeOrderFromFile(orderID,file);
+    public static void cancelOrder(int orderID, String file) {
+        for (Order o : orders) {
+            if (o.getOrderID() == orderID) {
                 orders.remove(o);
+                Ledger.removeOrderFromActiveOrders(orders, file);
+                sort();
+                return;
             }
         }
+        System.out.println("ID findes ikke");
     }
 
     public static void showOrders() {
         for (Order o : orders) {
-            System.out.println(o);
+                System.out.println(o);
         }
     }
 
@@ -46,7 +52,7 @@ public class ActiveOrders {
 
     public static void addNewOrderToFile(Order o, String file) {
         addNewOrder(o);
-        Ledger.addOrderToFile(o,file);
+        Ledger.addOrderToFile(o, file);
     }
 
     public static Order getOrderFromOrderID(int orderID) {
@@ -59,7 +65,7 @@ public class ActiveOrders {
         return null;
     }
 
-    private static void sort(){
+    private static void sort() {
         Collections.sort(orders);
     }
 
