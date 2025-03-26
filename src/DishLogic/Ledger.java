@@ -37,8 +37,6 @@ public class Ledger {
         try {
             if (newFile.createNewFile()) {
                 System.out.println("Der er ikke nogen fil der hedder " + fileName + ", opretter en tom fil" + newFile.getName());
-            } else {
-                System.out.println("File already exists");
             }
 
         } catch (IOException e) {
