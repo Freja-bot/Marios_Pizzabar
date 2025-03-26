@@ -14,24 +14,27 @@ public class ActiveOrders {
     //statistics stuff
 
     public static void loadActiveOrders(String file) {
-        ArrayList<String> data =  Ledger.getFileAsArrayListOfStrings(file);
-        for(String s : data){
+        ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
+        for (String s : data) {
             orders.add(new Order(s));
         }
         sort();
     }
 
-    public static void finishOrder(int orderID, String file,String file2) {
+    public static void finishOrder(int orderID, String file, String file2) {
         Order order = getOrderFromOrderID(orderID);
-        cancelOrder(orderID,file);
-        //Ledger.saveForStatistics(order,file2);
+        if (order == null) {
+            return;
+        }
+        cancelOrder(orderID, file);
+        Ledger.saveForStatistics(order, file2);
     }
 
-    public static void cancelOrder(int orderID,String file){
-        for(Order o: orders){
-            if(o.getOrderID()==orderID){
+    public static void cancelOrder(int orderID, String file) {
+        for (Order o : orders) {
+            if (o.getOrderID() == orderID) {
                 orders.remove(o);
-                Ledger.sortOrders(orders,file);
+                Ledger.sortOrders(orders, file);
                 return;
             }
         }
@@ -51,7 +54,7 @@ public class ActiveOrders {
 
     public static void addNewOrderToFile(Order o, String file) {
         addNewOrder(o);
-        Ledger.addOrderToFile(o,file);
+        Ledger.addOrderToFile(o, file);
     }
 
     public static Order getOrderFromOrderID(int orderID) {
@@ -64,7 +67,7 @@ public class ActiveOrders {
         return null;
     }
 
-    private static void sort(){
+    private static void sort() {
         Collections.sort(orders);
     }
 
