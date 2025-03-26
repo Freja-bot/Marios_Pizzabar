@@ -17,7 +17,6 @@ public class UserInterface {
 
     public static void menuInterface() {
 
-        Controller controller = new Controller(scanner);
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("MENU-KORT");
