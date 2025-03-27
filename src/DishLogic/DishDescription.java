@@ -7,6 +7,7 @@ public class DishDescription implements Comparable<DishDescription> {
     private double price;
     private String description;
 
+    //a constructor creating a new dish
     public DishDescription(int dishID, String name, String description, double price) {
 
         this.dishID = dishID;
@@ -17,6 +18,7 @@ public class DishDescription implements Comparable<DishDescription> {
 
     }
 
+    //constructor loading an old dish
     public DishDescription(String lineFromFile) {
         String[] createDish = lineFromFile.split(":");
         if (createDish.length == 4) {
@@ -31,6 +33,7 @@ public class DishDescription implements Comparable<DishDescription> {
         return dishID + ". " + name + ": " + description + " " + String.format("%.2f", price) + ",-";
     }
 
+    //getters
     public int getDishID() {
         return dishID;
     }
@@ -47,6 +50,7 @@ public class DishDescription implements Comparable<DishDescription> {
         return description;
     }
 
+    //A different form of toString, that takes this dish's values and returns a string containing them
     public String addToFile() {
         return dishID + ":" + name + ":" + description + ":" + price;
     }

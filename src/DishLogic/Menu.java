@@ -12,14 +12,12 @@ public class Menu {
 
     /*Private constructor means this class can only be instantiated as an object from within this class.
     This class is a utility class*/
-    private Menu(){
-
-    }
+    private Menu(){}
 
     //Iterating through the ArrayList menu and printing all dishes
     public static void showMenu() {
         for (DishDescription d : menu) {
-            System.out.println(d.toString()); //toString should not be necessary?
+            System.out.println(d);
         }
     }
 
@@ -28,7 +26,7 @@ public class Menu {
     public static void loadMenuFromFile(String file) {
         ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
         for (String s : data) {
-            menu.add(new DishDescription(s)); //use method addNewDish() instead?
+            addNewDish(new DishDescription(s));
         }
         sort();
     }

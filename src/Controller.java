@@ -9,15 +9,19 @@ public class Controller {
     /*TODO:
     - getUniqueID();
     */
+
+    //variables
     private static Controller controller = null;
     private Scanner scanner;
     private ArrayList<DishDescription> menu;
 
+    //private constructor is used to control how many exists in this program
     private Controller(){
         this.scanner = new Scanner(System.in);
 
     }
 
+    //getInstance gives and if needed creates an instance of controller, this is to ensure there is only one
     public static Controller getInstance(){
         if(controller == null){
             controller = new Controller();
@@ -25,11 +29,12 @@ public class Controller {
         return controller;
     }
 
+    //
     public Scanner getScanner(){
         return scanner;
     }
 
-    //Looks in console for aa valid int
+    //Looks in console for a valid int
     public int getUserInput(int choiceBoundary){
         return getUserInput(choiceBoundary, 1);
     }
@@ -39,6 +44,8 @@ public class Controller {
         int userInput;
 
         do {
+            //While loop skips every token (non-number input) until there is a number,
+            //then the loop ends and that number is saved in userInput
             while (!this.scanner.hasNextInt()) {
 
                 this.scanner.next();

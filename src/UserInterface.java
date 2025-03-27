@@ -4,19 +4,24 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    //variables
     private static Controller controller = Controller.getInstance();
     private static Scanner scanner = controller.getScanner();
     private final static String MENU_FILE = "PizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
 
+    //Pre-program tasks are completed
     public static void startProgram() {
         Menu.loadMenuFromFile(MENU_FILE);
         ActiveOrders.loadActiveOrders(ACTIVE_ORDERS);
         menuInterface();
     }
 
+    //This method controls the menu in the console
     public static void menuInterface() {
 
+        //a while loop runs the entire program logic, until the user chooses exit,
+        //where after the program exits the loop and ends
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("MENU-KORT");
@@ -27,6 +32,8 @@ public class UserInterface {
             int userChoice = controller.getUserInput(4, 0);
             System.out.println("Programmet modtog: " + userChoice);
 
+            //a switch is like many if statements asking,
+            //if userChoice (a number) is equal to number besides case ... :{
             switch (userChoice) {
 
                 case 1: {
@@ -57,6 +64,7 @@ public class UserInterface {
         }
     }
 
+    //has its own while and switch to determine if the user wishes one or multiple dishes.
     public static void createNewOrder() {
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
@@ -96,6 +104,7 @@ public class UserInterface {
         }
     }
 
+    //uses same trick to display a menu over pizzaMenu options
     public static void menuSettings() {
         boolean isRunning = true;
         while (isRunning) {
