@@ -28,9 +28,9 @@ public class Menu {
         menu.add(dish);
     }
 
-    public static void addNewDishWithCustomID(DishDescription dish,int dishID){
-        menu.add(dishID-1,dish);
-        UniqueID.fixMenuNumbers("PizzaMenu.txt");
+    public static void addNewDishWithCustomID(DishDescription dish,String fileName){
+        menu.add(dish.getDishID()-1,dish);
+        UniqueID.fixMenuNumbers(fileName);
     }
 
     public static void addNewDishToMenu(DishDescription dish, String fileName) {
