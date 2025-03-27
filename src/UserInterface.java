@@ -104,15 +104,14 @@ public class UserInterface {
             switch (userChoice) {
                 case 1: {
                     System.out.println("enter id , type 0 to cancel");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
+                    int id = controller.getUserInput(500);
                     if (id == 0) {
                         break;
                     }
                     System.out.println("enter name");
-                    String name = scanner.nextLine();
+                    String name = controller.getNonEmptyString();
                     System.out.println("enter description");
-                    String description = scanner.nextLine();
+                    String description = controller.getNonEmptyString();
                     System.out.println("enter price");
                     double price = scanner.nextDouble();
                     scanner.nextLine();
@@ -121,7 +120,7 @@ public class UserInterface {
                 }
                 case 2: {
                     System.out.println("Enter ID to remove - type 0 to cancel");
-                    int remove = scanner.nextInt();
+                    int remove = controller.getUserInput(500);
                     scanner.nextLine();
                     if (remove == 0) {
                         break;
