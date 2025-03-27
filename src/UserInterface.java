@@ -135,8 +135,7 @@ public class UserInterface {
                     System.out.println("enter description");
                     String description = controller.getNonEmptyString();
                     System.out.println("enter price");
-                    double price = scanner.nextDouble();
-                    scanner.nextLine();
+                    double price = controller.getUserInputAsDouble();
                     Menu.addNewDishToMenu(new DishDescription(UniqueID.getDishID(), name, description, price), MENU_FILE);
                     break;
                 }
