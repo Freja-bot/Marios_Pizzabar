@@ -123,14 +123,13 @@ public class UserInterface {
                     System.out.println("enter description");
                     String description = scanner.nextLine();
                     System.out.println("enter price");
-                    double price = scanner.nextDouble();
-                    scanner.nextLine();
+                    double price = controller.getUserInputAsDouble();
                     Menu.addNewDishToMenu(new DishDescription(id, name,description, price), MENU_FILE);
                     break;
                 }
                 case 2: {
                     System.out.println("Enter ID to remove - type 0 to cancel");
-                    int remove = scanner.nextInt();
+                    int remove = scanner.nextInt(); //use getUserInput()?
                     scanner.nextLine();
                     if (remove == 0) {
                         break;

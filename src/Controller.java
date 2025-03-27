@@ -58,4 +58,22 @@ public class Controller {
         return userInput;
     }
 
+    public double getUserInputAsDouble(){
+        double userInput;
+
+        do {
+            //While loop skips every token (non-number input) until there is a number,
+            //then the loop ends and that number is saved in userInput
+            while (!this.scanner.hasNextDouble()) {
+
+                this.scanner.next();
+
+            }
+            userInput = this.scanner.nextDouble();
+            this.scanner.nextLine();
+        }while (userInput < 0);
+
+        return userInput;
+    }
+
 }
