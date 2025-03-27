@@ -13,15 +13,7 @@ public class Order implements Comparable<Order> {
     private ArrayList<OrderLine> orderLines;
 
     public Order(int hour, int minute) {
-        int id = 0;
-        for (Order o : ActiveOrders.getOrders()) {
-            int idCheck = o.getOrderID();
-            if (idCheck > id) {
-                id = idCheck;
-            }
-        }
-        id++;
-        this.orderID = id;
+        this.orderID = UniqueID.getOrderID();
         this.date = LocalDate.now();
         collectionTime = LocalTime.of(hour, minute);
         //If collection time is set to earlier than today, ths program assumes that it
