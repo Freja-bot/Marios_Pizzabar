@@ -19,6 +19,7 @@ public class UserInterface {
 
         Controller controller = new Controller(scanner);
         boolean isRunning = true;
+        int dishAmount = Menu.getMenu().size();
         while (isRunning) {
             System.out.println("MENU-KORT");
             Menu.showMenu();
@@ -31,9 +32,15 @@ public class UserInterface {
             switch (userChoice) {
 
                 case 1: {
-                    createNewOrder();
+                    if (dishAmount == 0) {
+                        System.out.println("MENUKORTET ER TOMT !\n");
+                        break;
+                    }
+                    createNewOrder(dishAmount);
                     break;
                 }
+
+
                 case 2: {
                     System.out.println("Indtast OrderID");
                     int orderID = controller.getUserInput(50000, 0);
@@ -58,7 +65,7 @@ public class UserInterface {
         }
     }
 
-    public static void createNewOrder() {
+    public static void createNewOrder(int dishAmount) {
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
         if(hour==-1){
@@ -66,6 +73,9 @@ public class UserInterface {
         }
         System.out.println("Minut:");
         int minute = controller.getUserInput(59, 0);
+        if(minute==-1){
+            return;
+        }
         Order order = new Order(hour, minute);
         int userChoice = 2;
         boolean isRunning = true;
@@ -79,7 +89,7 @@ public class UserInterface {
                 }
                 case 2: {
                     System.out.println("Skriv rettens nummer");
-                    int dishID = controller.getUserInput(Menu.getMenu().size());
+                    int dishID = controller.getUserInput(dishAmount);
                     System.out.println("Antal?");
                     int quantity = controller.getUserInput(20);
                     order.addDish(Menu.getDishFromID(dishID), quantity);
