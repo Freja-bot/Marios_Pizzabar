@@ -69,4 +69,9 @@ public class ActiveOrders {
         Collections.sort(orders);
     }
 
+    public static ArrayList<Order>getOrders(){
+        return orders;
+
+    }
+
 }
