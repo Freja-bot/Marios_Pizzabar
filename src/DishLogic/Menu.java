@@ -6,6 +6,9 @@ import java.util.Collections;
 public class Menu {
     private static ArrayList<DishDescription> menu = new ArrayList<>();
 
+    private Menu(){
+
+    }
 
     public static void showMenu() {
         for (DishDescription d : menu) {
@@ -23,6 +26,11 @@ public class Menu {
 
     public static void addNewDish(DishDescription dish) {
         menu.add(dish);
+    }
+
+    public static void addNewDishWithCustomID(DishDescription dish,String fileName){
+        menu.add(dish.getDishID()-1,dish);
+        UniqueID.fixMenuNumbers(fileName);
     }
 
     public static void addNewDishToMenu(DishDescription dish, String fileName) {
@@ -45,7 +53,7 @@ public class Menu {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
-                Ledger.removeDishFromMenu(menu, fileName);
+                UniqueID.fixMenuNumbers(fileName);
                 return;
             }
         }

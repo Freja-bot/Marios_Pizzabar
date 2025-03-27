@@ -14,7 +14,6 @@ public class DishDescription implements Comparable<DishDescription> {
         this.description = description;
         this.price = price;
 
-
     }
 
     public DishDescription(String lineFromFile) {
@@ -41,6 +40,10 @@ public class DishDescription implements Comparable<DishDescription> {
 
     public double getPrice() {
         return price;
+    }
+
+    public void setDishID(int dishID) {
+        this.dishID = dishID;
     }
 
     public String getDescription() {
