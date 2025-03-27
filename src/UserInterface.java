@@ -121,7 +121,6 @@ public class UserInterface {
                 case 2: {
                     System.out.println("Enter ID to remove - type 0 to cancel");
                     int remove = controller.getUserInput(500);
-                    scanner.nextLine();
                     if (remove == 0) {
                         break;
                     }
