@@ -55,6 +55,9 @@ public class Order implements Comparable<Order> {
     }
 
     public void addDish(DishDescription dish, int quantity) {
+        if(quantity<=0){
+            return;
+        }
         orderLines.add(new OrderLine(dish, quantity));
     }
 
