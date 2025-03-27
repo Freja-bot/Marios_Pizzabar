@@ -15,7 +15,6 @@ public class DishDescription implements Comparable<DishDescription> {
         this.description = description;
         this.price = price;
 
-
     }
 
     //constructor loading an old dish
@@ -44,6 +43,10 @@ public class DishDescription implements Comparable<DishDescription> {
 
     public double getPrice() {
         return price;
+    }
+
+    public void setDishID(int dishID) {
+        this.dishID = dishID;
     }
 
     public String getDescription() {

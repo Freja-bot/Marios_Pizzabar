@@ -25,4 +25,8 @@ public class OrderLine {
         return this.dish.getDishID() + "/" + this.quantity;
     }
 
+    public String addToStatistics(){
+        return this.dish.getName() + "/" + this.quantity;
+    }
+
 }

@@ -10,8 +10,14 @@ public class Ledger { //change name to LEDGER?
 
     //TODO
     //save to statistics
+    private Ledger(){
+
 
     //Adding a dish to a file
+
+    }
+
+
     public static void addDishToFile(DishDescription dish, String file) {
         writeLineToFile(dish.addToFile(), file);
     }
@@ -50,8 +56,10 @@ public class Ledger { //change name to LEDGER?
         }
     }
 
-    //Goes through menu file and finds a specific dish, then removes it
-    public static void removeDishFromMenu(ArrayList<DishDescription> dishes, String file) {
+
+    //creates new menu file where a specific dish is removed
+    public static void rewriteFileWithoutMissingID(ArrayList<DishDescription> dishes, String file) {
+
         try {
             FileWriter writer = new FileWriter(file);
             for (DishDescription d : dishes) {
@@ -97,7 +105,7 @@ public class Ledger { //change name to LEDGER?
 
     //saves Order in statistics file
     public static void saveForStatistics(Order order, String file) {
-        writeLineToFile(order.addToFile(), file);
+        writeLineToFile(order.addToStatistics(), file);
     }
 
 }

@@ -20,6 +20,7 @@ public class UserInterface {
     //This method controls the menu in the console
     public static void menuInterface() {
 
+
         //a while loop runs the entire program logic, until the user chooses exit,
         //where after the program exits the loop and ends
         boolean isRunning = true;
@@ -68,7 +69,7 @@ public class UserInterface {
     public static void createNewOrder() {
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
-        if(hour==-1){
+        if (hour == -1) {
             return;
         }
         System.out.println("Minut:");
@@ -108,29 +109,40 @@ public class UserInterface {
     public static void menuSettings() {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("0 - for at gå tilbage, 1 - for at tilføje en ny ret til menuen, 2 - for at fjerne en ret fra menuen");
-            int userChoice = controller.getUserInput(2, 0);
+            System.out.println("0 - for at gå tilbage, 1 - for at tilføje en ny ret til menuen med et selvalgt ID, 2 - for at tilføje en ny ret til menuen, 3 - for at fjerne en ret fra menuen");
+            int userChoice = controller.getUserInput(3, 0);
             switch (userChoice) {
                 case 1: {
                     System.out.println("enter id , type 0 to cancel");
-                    int id = scanner.nextInt();
-                    scanner.nextLine();
+                    int id = controller.getUserInput(500);
                     if (id == 0) {
                         break;
                     }
                     System.out.println("enter name");
-                    String name = scanner.nextLine();
+                    String name = controller.getNonEmptyString();
                     System.out.println("enter description");
-                    String description = scanner.nextLine();
+                    String description = controller.getNonEmptyString();
                     System.out.println("enter price");
-                    double price = controller.getUserInputAsDouble();
-                    Menu.addNewDishToMenu(new DishDescription(id, name,description, price), MENU_FILE);
+
+                    double price = scanner.nextDouble();
+                    scanner.nextLine();
+                    Menu.addNewDishWithCustomID(new DishDescription(id, name, description, price), MENU_FILE);
                     break;
                 }
                 case 2: {
-                    System.out.println("Enter ID to remove - type 0 to cancel");
-                    int remove = scanner.nextInt(); //use getUserInput()?
+                    System.out.println("enter name");
+                    String name = controller.getNonEmptyString();
+                    System.out.println("enter description");
+                    String description = controller.getNonEmptyString();
+                    System.out.println("enter price");
+                    double price = scanner.nextDouble();
                     scanner.nextLine();
+                    Menu.addNewDishToMenu(new DishDescription(UniqueID.getDishID(), name, description, price), MENU_FILE);
+                    break;
+                }
+                case 3: {
+                    System.out.println("Enter ID to remove - type 0 to cancel");
+                    int remove = controller.getUserInput(500);
                     if (remove == 0) {
                         break;
                     }
@@ -138,7 +150,7 @@ public class UserInterface {
                     break;
                 }
                 default: {
-                    isRunning=false;
+                    isRunning = false;
                     break;
                 }
             }

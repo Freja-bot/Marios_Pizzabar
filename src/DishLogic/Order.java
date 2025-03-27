@@ -14,7 +14,7 @@ public class Order implements Comparable<Order> {
 
     //Constuctor for creating new order
     public Order(int hour, int minute) {
-        this.orderID = 1;
+        this.orderID = UniqueID.getOrderID();
         this.date = LocalDate.now();
         collectionTime = LocalTime.of(hour, minute);
         //If collection time is set to earlier than today, ths program assumes that it
@@ -92,6 +92,14 @@ public class Order implements Comparable<Order> {
             temp = temp + ":" + o.addToFile();
         }
         return temp;
+    }
+
+    public String addToStatistics() {
+        String temp = this.date + ":" + this.collectionTime.toString();
+        for (OrderLine o : orderLines) {
+            temp = temp + ":" + o.addToStatistics();
+        }
+        return temp + ":" + getTotalPrice();
     }
 
 }
