@@ -67,6 +67,9 @@ public class ActiveOrders {
 
     //Saves the new order and adds it through addNewOrder() method
     public static void addNewOrderToFile(Order o, String file) {
+        if(o.getOrderLines().isEmpty()){
+            return;
+        }
         addNewOrder(o);
         Ledger.addOrderToFile(o, file);
     }

@@ -66,6 +66,10 @@ public class Order implements Comparable<Order> {
         return price;
     }
 
+    public ArrayList<OrderLine> getOrderLines() {
+        return orderLines;
+    }
+
     //CompareTo() takes an Order in its parameter and compares itself to its collection time
     //Then it returns 1 0 or -1 to indecate if it should be moved left or right in an array
     //This method is used to sort an array of orders

@@ -89,7 +89,10 @@ public class UserInterface {
                     System.out.println("Skriv rettens nummer");
                     int dishID = controller.getUserInput(Menu.getMenu().size());
                     System.out.println("Antal?");
-                    int quantity = controller.getUserInput(20);
+                    int quantity = controller.getUserInput(20, 0);
+                    if (quantity == 0) {
+                        break;
+                    }
                     order.addDish(Menu.getDishFromID(dishID), quantity);
                     break;
                 }
@@ -114,7 +117,7 @@ public class UserInterface {
             switch (userChoice) {
                 case 1: {
                     System.out.println("enter id , type 0 to cancel");
-                    int id = controller.getUserInput(500);
+                    int id = controller.getUserInput(500, 0);
                     if (id == 0) {
                         break;
                     }
