@@ -6,24 +6,32 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ledger {
+public class Ledger { //change name to LEDGER?
 
     //TODO
     //save to statistics
     private Ledger(){
 
+
+    //Adding a dish to a file
+
     }
+
 
     public static void addDishToFile(DishDescription dish, String file) {
         writeLineToFile(dish.addToFile(), file);
     }
 
+    //Returns a list of strings representing data from a file
     public static ArrayList<String> getFileAsArrayListOfStrings(String file) {
         ArrayList<String> strings = new ArrayList<>();
         try {
+            //Instantiating a File object (NOT THE FILE ITSELF), that contains information about the file
             File myFile = new File(file);
             createFile(file, myFile);
+            //Instantiating a scanner that scans a file
             Scanner reader = new Scanner(myFile);
+            //Goes though file, and adds every line to array, until there are no lines in file
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
                 strings.add(data);
@@ -35,6 +43,7 @@ public class Ledger {
         return strings;
     }
 
+    //Creates a new file, unless one already exists
     public static void createFile(String fileName, File newFile) {
         try {
             if (newFile.createNewFile()) {
@@ -47,7 +56,10 @@ public class Ledger {
         }
     }
 
+
+    //creates new menu file where a specific dish is removed
     public static void rewriteFileWithoutMissingID(ArrayList<DishDescription> dishes, String file) {
+
         try {
             FileWriter writer = new FileWriter(file);
             for (DishDescription d : dishes) {
@@ -60,6 +72,7 @@ public class Ledger {
         }
     }
 
+    //Goes through active orders file and finds a specific order, then removes it
     public static void removeOrderFromActiveOrders(ArrayList<Order> orders, String file){
         try {
             FileWriter writer = new FileWriter(file);
@@ -73,10 +86,12 @@ public class Ledger {
         }
     }
 
+    //Adding an order to its file (methods could be combined into one, using interfaces)
     public static void addOrderToFile(Order order, String file) {
         writeLineToFile(order.addToFile(), file);
     }
 
+    //Takes a sentence and adds it to a given file
     private static void writeLineToFile(String line, String file) {
         try {
             FileWriter writer = new FileWriter(file, true);
@@ -88,6 +103,7 @@ public class Ledger {
         }
     }
 
+    //saves Order in statistics file
     public static void saveForStatistics(Order order, String file) {
         writeLineToFile(order.addToStatistics(), file);
     }
