@@ -90,9 +90,6 @@ public class UserInterface {
                     int dishID = controller.getUserInput(Menu.getMenu().size());
                     System.out.println("Antal?");
                     int quantity = controller.getUserInput(20, 0);
-                    if (quantity == 0) {
-                        break;
-                    }
                     order.addDish(Menu.getDishFromID(dishID), quantity);
                     break;
                 }
