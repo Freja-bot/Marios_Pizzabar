@@ -18,26 +18,26 @@ public class Controller {
 
 
     //private constructor is used to control how many exists in this program
-    private Controller(){
+    private Controller() {
         this.scanner = new Scanner(System.in);
 
     }
 
     //getInstance gives and if needed creates an instance of controller, this is to ensure there is only one
-    public static Controller getInstance(){
-        if(controller == null){
+    public static Controller getInstance() {
+        if (controller == null) {
             controller = new Controller();
         }
         return controller;
     }
 
     //
-    public Scanner getScanner(){
+    public Scanner getScanner() {
         return scanner;
     }
 
     //Looks in console for a valid int
-    public int getUserInput(int choiceBoundary){
+    public int getUserInput(int choiceBoundary) {
 
         return getUserInput(choiceBoundary, 1);
     }
@@ -62,7 +62,7 @@ public class Controller {
     }
 
 
-    public double getUserInputAsDouble(){
+    public double getUserInputAsDouble() {
         double userInput;
 
         do {
@@ -75,21 +75,23 @@ public class Controller {
             }
             userInput = this.scanner.nextDouble();
             this.scanner.nextLine();
-        }while (userInput < 0);
+        } while (userInput < 0);
 
         return userInput;
 
-    public String getNonEmptyString() {
-        String input;
-        while (true) {
-            input = scanner.nextLine();
-            if (input.isEmpty()) {
-                continue;
+    }
+        public String getNonEmptyString() {
+            String input;
+            while (true) {
+                input = scanner.nextLine();
+                if (input.isEmpty()) {
+                    continue;
+                }
+                break;
             }
-            break;
+            return input;
+
         }
-        return input;
 
     }
 
-}
