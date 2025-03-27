@@ -28,6 +28,11 @@ public class Menu {
         menu.add(dish);
     }
 
+    public static void addNewDishWithCustomID(DishDescription dish,int dishID){
+        menu.add(dishID-1,dish);
+        UniqueID.fixMenuNumbers("PizzaMenu.txt");
+    }
+
     public static void addNewDishToMenu(DishDescription dish, String fileName) {
         for (DishDescription d : menu) {
             if (d.getDishID() == dish.getDishID()) {
@@ -48,7 +53,7 @@ public class Menu {
         for (DishDescription d : menu) {
             if (d.getDishID() == dishID) {
                 menu.remove(d);
-                Ledger.removeDishFromMenu(menu, fileName);
+                UniqueID.fixMenuNumbers(fileName);
                 return;
             }
         }
