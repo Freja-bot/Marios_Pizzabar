@@ -4,6 +4,7 @@ import DishLogic.Order;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Controller {
 
     /*TODO:
@@ -13,18 +14,18 @@ public class Controller {
     private Scanner scanner;
     private ArrayList<DishDescription> menu;
 
-    public Controller(Scanner scanner){
+    public Controller(Scanner scanner) {
         this.scanner = scanner;
 
     }
 
     //Looks in console for aa valid int
-    public int getUserInput(int choiceBoundary){
+    public int getUserInput(int choiceBoundary) {
         return getUserInput(choiceBoundary, 1);
     }
 
     //Overloading to allow for more choice in boundaries
-    public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary){
+    public int getUserInput(int choiceUpperBoundary, int choiceLowerBoundary) {
         int userInput;
 
         do {
@@ -35,9 +36,21 @@ public class Controller {
             }
             userInput = this.scanner.nextInt();
             this.scanner.nextLine();
-        }while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
+        } while (userInput > choiceUpperBoundary || userInput < choiceLowerBoundary);
 
         return userInput;
+    }
+
+    public String getNonEmptyString() {
+        String input;
+        while (true) {
+            input = scanner.nextLine();
+            if (input.isEmpty()) {
+                continue;
+            }
+            break;
+        }
+        return input;
     }
 
 }
