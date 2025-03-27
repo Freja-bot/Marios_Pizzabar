@@ -67,6 +67,10 @@ public class UserInterface {
 
     //has its own while and switch to determine if the user wishes one or multiple dishes.
     public static void createNewOrder() {
+        if (Menu.getMenu().isEmpty()) {
+            System.out.println("Menu is empty!");
+            return;
+        }
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
         if (hour == -1) {
