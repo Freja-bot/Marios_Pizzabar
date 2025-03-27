@@ -32,6 +32,6 @@ public class UniqueID {
             d.setDishID(id);
             id++;
         }
-        Ledger.removeDishFromMenu(Menu.getMenu(),file);
+        Ledger.rewriteFileWithoutMissingID(Menu.getMenu(),file);
     }
 }

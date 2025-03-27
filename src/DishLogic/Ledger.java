@@ -47,7 +47,7 @@ public class Ledger {
         }
     }
 
-    public static void removeDishFromMenu(ArrayList<DishDescription> dishes, String file) {
+    public static void rewriteFileWithoutMissingID(ArrayList<DishDescription> dishes, String file) {
         try {
             FileWriter writer = new FileWriter(file);
             for (DishDescription d : dishes) {
@@ -89,7 +89,7 @@ public class Ledger {
     }
 
     public static void saveForStatistics(Order order, String file) {
-        writeLineToFile(order.addToFile(), file);
+        writeLineToFile(order.addToStatistics(), file);
     }
 
 }
