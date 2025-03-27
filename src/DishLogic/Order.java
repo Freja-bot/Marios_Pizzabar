@@ -85,5 +85,13 @@ public class Order implements Comparable<Order> {
         return temp;
     }
 
+    public String addToStatistics() {
+        String temp = this.date + ":" + this.collectionTime.toString();
+        for (OrderLine o : orderLines) {
+            temp = temp + ":" + o.addToStatistics();
+        }
+        return temp + ":" + getTotalPrice();
+    }
+
 }
 
