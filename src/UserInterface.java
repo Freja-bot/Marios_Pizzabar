@@ -74,7 +74,7 @@ public class UserInterface {
 
 
     //has its own while and switch to determine if the user wishes one or multiple dishes.
-    public static void createNewOrder() {
+    public static void createNewOrder(int dishAmount) {
 
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
