@@ -35,10 +35,6 @@ public class UniqueID {
     }
 
 
-
-}
-
-
     public static int getDishID(){
         for (DishDescription d : Menu.getMenu()) {
             int idCheck = d.getDishID();
@@ -58,5 +54,6 @@ public class UniqueID {
         }
         Ledger.rewriteFileWithoutMissingID(Menu.getMenu(),file);
     }
+
 }
 
