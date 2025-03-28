@@ -12,7 +12,7 @@ public class UserInterface {
     private static UserInputController userInputController = UserInputController.getInstance();
     private static Scanner scanner = userInputController.getScanner();
     private final static String MENU_FILE = "PizzaMenu.txt";
-    private final static String ACTIVE_ORDERS = "services.ActiveOrders.txt";
+    private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
     private final static String STATISTICS = "statistics.txt";
 
     //Pre-program tasks are completed
