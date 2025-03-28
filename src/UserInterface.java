@@ -9,6 +9,7 @@ public class UserInterface {
     private static Scanner scanner = controller.getScanner();
     private final static String MENU_FILE = "PizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
+    private final static String STATISTICS = "statistics.txt";
 
     //Pre-program tasks are completed
     public static void startProgram() {
@@ -44,7 +45,7 @@ public class UserInterface {
                 case 2: {
                     System.out.println("Indtast OrderID");
                     int orderID = controller.getUserInput(50000, 0);
-                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, "Staticstics.txt");
+                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, STATISTICS);
                     break;
                 }
                 case 3: {
