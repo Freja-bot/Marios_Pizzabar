@@ -3,15 +3,19 @@ package DishLogic;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-//TODO
-//addToFile
+
 public class Order implements Comparable<Order> {
+
+    //Variables
     private int orderID;
     private LocalDate date;
     private LocalTime collectionTime;
     private ArrayList<OrderLine> orderLines;
 
-    public Order(int hour, int minute){
+
+    //Constuctor for creating new order
+    public Order(int hour, int minute) {
+
         this.orderID = UniqueID.getOrderID();
         this.date = LocalDate.now();
         collectionTime = LocalTime.of(hour, minute);
@@ -23,20 +27,29 @@ public class Order implements Comparable<Order> {
         orderLines = new ArrayList<>();
     }
 
-    public Order(String data){
+
+    //constructor for loading old order
+    public Order(String data) {
+        //split function splits our data string into multiple strings, so we can access them individually
+
         String[] splitData = data.split(":");
         this.orderID = Integer.parseInt(splitData[0]);
         this.date = LocalDate.parse(splitData[1]);
         collectionTime = LocalTime.of(Integer.parseInt(splitData[2]), Integer.parseInt(splitData[3]));
         orderLines = new ArrayList<>();
-        //TODO add safeguard
-        for(int i = 4; i < splitData.length; i++){
+
+
+        for (int i = 4; i < splitData.length; i++) {
+
             String[] doubleSpiltData = splitData[i].split("/");
             addDish(Menu.getDishFromID(Integer.parseInt(doubleSpiltData[0])), Integer.parseInt(doubleSpiltData[1]));
         }
+
     }
 
-    public LocalTime getCollectionTime(){
+    //getters
+    public LocalTime getCollectionTime() {
+
         return this.collectionTime;
     }
 
@@ -60,8 +73,13 @@ public class Order implements Comparable<Order> {
         return price;
     }
 
-     public int compareTo(Order otherOrder){
-        if(this.date.compareTo(otherOrder.getDate()) == 0){
+
+    //CompareTo() takes an Order in its parameter and compares itself to its collection time
+    //Then it returns 1 0 or -1 to indecate if it should be moved left or right in an array
+    //This method is used to sort an array of orders
+    public int compareTo(Order otherOrder) {
+        if (this.date.compareTo(otherOrder.getDate()) == 0) {
+
             return this.collectionTime.compareTo(otherOrder.getCollectionTime());
         }else{
             return this.date.compareTo(otherOrder.getDate());
@@ -76,12 +94,22 @@ public class Order implements Comparable<Order> {
         return orderText.toString();
     }
 
-    public String addToFile(){
+    //A different form of toString, that takes this order's values and returns a string containing them
+    public String addToFile() {
+
         String temp = this.orderID + ":" + this.date + ":" + this.collectionTime.toString();
         for(OrderLine o : orderLines){
             temp = temp + ":" + o.addToFile();
         }
         return temp;
+    }
+
+    public String addToStatistics() {
+        String temp = this.date + ":" + this.collectionTime.toString();
+        for (OrderLine o : orderLines) {
+            temp = temp + ":" + o.addToStatistics();
+        }
+        return temp + ":" + getTotalPrice();
     }
 
 }

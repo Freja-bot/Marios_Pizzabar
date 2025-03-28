@@ -1,11 +1,12 @@
 package DishLogic;
 
+
 import java.awt.*;
 import java.util.ArrayList;
 
 public class UniqueID {
     public static int orderID = 0;
-
+    private static int dishID;
     private UniqueID(){
 
     }
@@ -35,5 +36,27 @@ public class UniqueID {
 
 
 
+}
+
+
+    public static int getDishID(){
+        for (DishDescription d : Menu.getMenu()) {
+            int idCheck = d.getDishID();
+            if (idCheck > dishID) {
+                dishID = idCheck;
+            }
+        }
+        dishID++;
+        return dishID;
+    }
+
+    public static void fixMenuNumbers(String file){
+        int id = 1;
+        for(DishDescription d:Menu.getMenu()){
+            d.setDishID(id);
+            id++;
+        }
+        Ledger.rewriteFileWithoutMissingID(Menu.getMenu(),file);
+    }
 }
 

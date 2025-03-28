@@ -20,8 +20,13 @@ public class OrderLine {
         return this.dish.getDishID() + ". " + this.dish.getName() + "  Antal. " + this.quantity + '\n';
     }
 
+    //A different form of toString, that takes this orderline's values and returns a string containing them
     public String addToFile(){
         return this.dish.getDishID() + "/" + this.quantity;
+    }
+
+    public String addToStatistics(){
+        return this.dish.getName() + "/" + this.quantity;
     }
 
 }
