@@ -111,6 +111,10 @@ public class UserInterface {
 
     //uses same trick to display a menu over pizzaMenu options
     public static void menuSettings() {
+        if (!ActiveOrders.getOrders().isEmpty()) {
+            System.out.println("Fjern alle aktive ordre før du ændre i menuen");
+            return;
+        }
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("0 - for at gå tilbage, 1 - for at tilføje en ny ret til menuen med et selvalgt ID, 2 - for at tilføje en ny ret til menuen, 3 - for at fjerne en ret fra menuen");
