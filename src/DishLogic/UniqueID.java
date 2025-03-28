@@ -1,19 +1,43 @@
 package DishLogic;
 
-public class UniqueID {
-    private static int orderID;
-    private static int dishID;
 
-    public static int getOrderID(){
-        for (Order o : ActiveOrders.getOrders()) {
-            int idCheck = o.getOrderID();
-            if (idCheck > orderID) {
-                orderID = idCheck;
-            }
+import java.awt.*;
+import java.util.ArrayList;
+
+public class UniqueID {
+    public static int orderID = 0;
+    private static int dishID;
+    private UniqueID(){
+
+    }
+
+    public static int getOrderID() {
+        //Vi skal lave et loop som gå igennem alle bestillinger og finder det højeste nummer og lægger 1 til.
+        //Derpå får man et unikt ID. For/ Each loop.
+        ArrayList<Order> Orders = ActiveOrders.getOrders();
+
+        if(Orders.isEmpty()){
+            orderID=1;
+        } else {
+
+        Order highestOrder = Orders.get(0);
+        for(Order activeOrder: Orders)
+
+        {
+            if(highestOrder.getOrderID()<activeOrder.getOrderID()){
+            highestOrder = activeOrder;}
+
         }
-        orderID++;
+
+        orderID = highestOrder.getOrderID()+1;}
+
         return orderID;
     }
+
+
+
+}
+
 
     public static int getDishID(){
         for (DishDescription d : Menu.getMenu()) {
@@ -35,3 +59,4 @@ public class UniqueID {
         Ledger.rewriteFileWithoutMissingID(Menu.getMenu(),file);
     }
 }
+
