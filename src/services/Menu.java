@@ -7,8 +7,6 @@ import java.util.Collections;
 
 public class Menu {
 
-    //TODO change variable names
-
     //variables:
     private static ArrayList<Dish> menu = new ArrayList<>();
 

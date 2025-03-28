@@ -9,18 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ledger { //change name to LEDGER?
+public class Ledger {
 
-    //TODO
-    //save to statistics
     private Ledger(){
-
-
-    //Adding a dish to a file
-
     }
 
-
+    //Adding a dish to a file
     public static void addDishToFile(Dish dish, String fileName) {
         writeLineToFile(dish.addToFile(), fileName);
     }
@@ -40,7 +34,7 @@ public class Ledger { //change name to LEDGER?
                 strings.add(data);
             }
         } catch (IOException e) {
-            System.out.println("ERROR!!!");
+            System.out.println("ERROR!!! - Failed operation on file");
             e.printStackTrace();
         }
         return strings;
@@ -54,7 +48,7 @@ public class Ledger { //change name to LEDGER?
             }
 
         } catch (IOException e) {
-            System.out.println("ERROR!!");
+            System.out.println("ERROR!!! - Failed to create or see missing file");
             e.printStackTrace();
         }
     }
@@ -70,7 +64,7 @@ public class Ledger { //change name to LEDGER?
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("ERROR!!");
+            System.out.println("ERROR!!! Failed to remove dish");
             e.printStackTrace();
         }
     }
@@ -84,7 +78,7 @@ public class Ledger { //change name to LEDGER?
             }
             writer.close();
         } catch (IOException e) {
-            System.out.println("ERROR!!");
+            System.out.println("ERROR!!! - Failed to remove order");
             e.printStackTrace();
         }
     }
@@ -101,7 +95,7 @@ public class Ledger { //change name to LEDGER?
             writer.write(line + "\n");
             writer.close();
         } catch (IOException e) {
-            System.out.println("ERROR!!!");
+            System.out.println("ERROR!!! - Failed to save to a file");
             e.printStackTrace();
         }
     }
