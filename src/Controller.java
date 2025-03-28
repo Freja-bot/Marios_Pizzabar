@@ -84,7 +84,7 @@ public class Controller {
             String input;
             while (true) {
                 input = scanner.nextLine();
-                if (input.isEmpty()) {
+                if (input.isEmpty()||input.contains(":")||input.contains("/")) {
                     continue;
                 }
                 break;

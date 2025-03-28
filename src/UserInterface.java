@@ -9,6 +9,7 @@ public class UserInterface {
     private static Scanner scanner = controller.getScanner();
     private final static String MENU_FILE = "PizzaMenu.txt";
     private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
+    private final static String STATISTICS = "statistics.txt";
 
     //Pre-program tasks are completed
     public static void startProgram() {
@@ -51,7 +52,7 @@ public class UserInterface {
                 case 2: {
                     System.out.println("Indtast OrderID");
                     int orderID = controller.getUserInput(50000, 0);
-                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, "Staticstics.txt");
+                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, STATISTICS);
                     break;
                 }
                 case 3: {
@@ -74,7 +75,12 @@ public class UserInterface {
 
 
     //has its own while and switch to determine if the user wishes one or multiple dishes.
-    public static void createNewOrder(int dishAmount) {
+
+    public static void createNewOrder() {
+        if (Menu.getMenu().isEmpty()) {
+            System.out.println("Menu is empty!");
+            return;
+        }
 
         System.out.println("Type -1 to cancel - Indtast afhentingstidspunktet\nTime:");
         int hour = controller.getUserInput(23, -1);
@@ -101,7 +107,7 @@ public class UserInterface {
                     System.out.println("Skriv rettens nummer");
                     int dishID = controller.getUserInput(dishAmount);
                     System.out.println("Antal?");
-                    int quantity = controller.getUserInput(20);
+                    int quantity = controller.getUserInput(20, 0);
                     order.addDish(Menu.getDishFromID(dishID), quantity);
                     break;
                 }
@@ -119,6 +125,10 @@ public class UserInterface {
 
     //uses same trick to display a menu over pizzaMenu options
     public static void menuSettings() {
+        if (!ActiveOrders.getOrders().isEmpty()) {
+            System.out.println("Fjern alle aktive ordre før du ændre i menuen");
+            return;
+        }
         boolean isRunning = true;
         while (isRunning) {
             System.out.println("0 - for at gå tilbage, 1 - for at tilføje en ny ret til menuen med et selvalgt ID, 2 - for at tilføje en ny ret til menuen, 3 - for at fjerne en ret fra menuen");
@@ -126,7 +136,7 @@ public class UserInterface {
             switch (userChoice) {
                 case 1: {
                     System.out.println("enter id , type 0 to cancel");
-                    int id = controller.getUserInput(500);
+                    int id = controller.getUserInput(500, 0);
                     if (id == 0) {
                         break;
                     }
@@ -135,8 +145,7 @@ public class UserInterface {
                     System.out.println("enter description");
                     String description = controller.getNonEmptyString();
                     System.out.println("enter price");
-
-                    double price = scanner.nextDouble();
+                    double price = controller.getUserInputAsDouble();
                     scanner.nextLine();
                     Menu.addNewDishWithCustomID(new DishDescription(id, name, description, price), MENU_FILE);
                     break;

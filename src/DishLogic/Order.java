@@ -61,7 +61,12 @@ public class Order implements Comparable<Order> {
         return this.orderID;
     }
 
-    public void addDish(DishDescription dish, int quantity){
+
+    public void addDish(DishDescription dish, int quantity) {
+        if(quantity<=0){
+            return;
+        }
+
         orderLines.add(new OrderLine(dish, quantity));
     }
 
@@ -71,6 +76,11 @@ public class Order implements Comparable<Order> {
             price += ol.getSubTotal();
         }
         return price;
+    }
+
+
+    public ArrayList<OrderLine> getOrderLines() {
+        return orderLines;
     }
 
 
