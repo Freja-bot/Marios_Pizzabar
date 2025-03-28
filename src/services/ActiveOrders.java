@@ -1,4 +1,6 @@
-package DishLogic;
+package services;
+
+import models.Order;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,19 +10,13 @@ public class ActiveOrders {
     private static ArrayList<Order> orders = new ArrayList<>();
     private static Order lastRemovedOrder;
 
-
-    //Loading saved active orders. Will be empty if all orders where complete
-
-    //TODO
-    //statistics stuff
-
     private ActiveOrders() {
 
     }
 
-
-    public static void loadActiveOrders(String file) {
-        ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(file);
+    //Loading saved active orders. Will be empty if all orders where complete
+    public static void loadActiveOrders(String fileName) {
+        ArrayList<String> data = Ledger.getFileAsArrayListOfStrings(fileName);
         for (String s : data) {
             orders.add(new Order(s));
         }
@@ -28,22 +24,22 @@ public class ActiveOrders {
     }
 
     //Checks if order exists and saves it for statistics
-    public static void finishOrder(int orderID, String file, String file2) {
+    public static void finishOrder(int orderID, String fileNameActiveOrders, String fileNameStatistics) {
         Order order = getOrderFromOrderID(orderID);
         if (order == null) {
             return;
         }
-        cancelOrder(orderID, file);
-        Ledger.saveForStatistics(order, file2);
+        cancelOrder(orderID, fileNameActiveOrders);
+        Ledger.saveForStatistics(order, fileNameStatistics);
     }
 
     //removes the order from the list of active orders and the file saving active orders,
     //and saving a one-time-only backup in lastRemovedOrder
-    public static void cancelOrder(int orderID, String file) {
+    public static void cancelOrder(int orderID, String fileName) {
         for (Order o : orders) {
             if (o.getOrderID() == orderID) {
                 orders.remove(o);
-                Ledger.removeOrderFromActiveOrders(orders, file);
+                Ledger.removeOrderFromActiveOrders(orders, fileName);
                 sort();
                 lastRemovedOrder = o;
                 return;
@@ -66,12 +62,12 @@ public class ActiveOrders {
     }
 
     //Saves the new order and adds it through addNewOrder() method
-    public static void addNewOrderToFile(Order o, String file) {
+    public static void addNewOrderToFile(Order o, String fileName) {
         if(o.getOrderLines().isEmpty()){
             return;
         }
         addNewOrder(o);
-        Ledger.addOrderToFile(o, file);
+        Ledger.addOrderToFile(o, fileName);
     }
 
     //Returns an order, given an orderID
@@ -85,9 +81,9 @@ public class ActiveOrders {
         return null;
     }
 
-    //Restores latest removed order
-    public static void restoreLatestRemovedOrder(String file){
-        addNewOrderToFile(lastRemovedOrder,file);
+    //Restores latest removed order (NOT IMPLIMENTED)
+    public static void restoreLatestRemovedOrder(String fileName){
+        addNewOrderToFile(lastRemovedOrder,fileName);
     }
 
     //Sorts the list of active orders with the compareTo() methods in Order

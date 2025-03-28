@@ -1,4 +1,6 @@
-package DishLogic;
+package models;
+import services.UniqueID;
+import services.Menu;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,7 +30,7 @@ public class Order implements Comparable<Order> {
     }
 
 
-    //constructor for loading old order
+    //An overloading constructor for loading old order
     public Order(String data) {
         //split function splits our data string into multiple strings, so we can access them individually
 
@@ -62,7 +64,7 @@ public class Order implements Comparable<Order> {
     }
 
 
-    public void addDish(DishDescription dish, int quantity) {
+    public void addDish(Dish dish, int quantity) {
         if(quantity<=0){
             return;
         }

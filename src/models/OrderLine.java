@@ -1,12 +1,12 @@
-package DishLogic;
+package models;
 
 //TODO
 //addToFile
 public class OrderLine {
-    private DishDescription dish;
+    private Dish dish;
     private int quantity;
 
-    public OrderLine(DishDescription dish, int quantity){
+    public OrderLine(Dish dish, int quantity){
         this.dish = dish;
         this.quantity = quantity;
     }

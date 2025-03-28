@@ -1,0 +1,50 @@
+1:Margherita:Tomatsauce, mozzarella og frisk basilikum:75.0
+2:Pepperoni:Tomatsauce, mozzarella og krydret pepperoni:80.0
+3:Vegetar:Tomatsauce, mozzarella, champignon, peberfrugt, løg og oliven:85.0
+4:Hawaii:Tomatsauce, mozzarella, skinke og ananas:85.0
+5:4 Formaggi:Tomatsauce, mozzarella, gorgonzola, parmesan og ricotta:90.0
+6:Capricciosa:Tomatsauce, mozzarella, skinke, champignon, artiskokker og oliven:90.0
+7:Quattro Stagioni:Tomatsauce, mozzarella, skinke, svampe, oliven og artiskokker:95.0
+8:Diavola:Tomatsauce, mozzarella, spicy salami, chili og peberfrugt:85.0
+9:Prosciutto e Funghi:Tomatsauce, mozzarella, skinke og svampe:90.0
+10:Napoli:Tomatsauce, mozzarella, ansjoser, oliven og kapers:90.0
+11:Marinara:Tomatsauce, hvidløg, oregano og olivenolie (uden ost):70.0
+12:Bolognese:Tomatsauce, mozzarella og kødsauce:95.0
+13:Mexicana:Tomatsauce, mozzarella, jalapeños, chili, oksekød og peberfrugt:95.0
+14:Al Tartufo:Tomatsauce, mozzarella, trøffelolie og parmaskinke:110.0
+15:Frutti di Mare:Tomatsauce, mozzarella, blæksprutter, rejer og muslinger:120.0
+16:Pesto:Tomatsauce, mozzarella, pesto, tomater og pinjekerner:95.0
+17:Bianca:Hvid pizza med ricotta, mozzarella, hvidløg og spinat:90.0
+18:Vegetariana:Tomatsauce, mozzarella, aubergine, courgette og peberfrugt:95.0
+19:Calzone:Foldet pizza med tomatsauce, mozzarella, skinke og svampe:100.0
+20:Rustica:Tomatsauce, mozzarella, bacon, løg og champignon:100.0
+21:Gorgonzola e Pera:Tomatsauce, mozzarella, gorgonzola og pærer:100.0
+22:Salsiccia:Tomatsauce, mozzarella, italiensk pølse og rucola:95.0
+23:Focaccia:Hvid pizza med olivenolie, rosmarin og havsalt:75.0
+24:Al Pollo:Tomatsauce, mozzarella, kylling og bacon:105.0
+25:Carbonara:Hvid pizza med bacon, æg og parmesan:100.0
+26:Lox e Formaggio:Tomatsauce, mozzarella, røget laks og creme fraiche:120.0
+27:Siciliana:Tomatsauce, mozzarella, aubergine, ricotta og oliven:95.0
+28:Funghi:Tomatsauce, mozzarella og champignon:80.0
+29:Pugliese:Tomatsauce, mozzarella, skinke, artiskokker og oliven:95.0
+30:Barbecue:Barbecuesauce, mozzarella, kylling og rødløg:105.0
+31:Burrata:Tomatsauce, mozzarella, burrata og frisk basilikum:120.0
+32:Parmigiana:Tomatsauce, mozzarella, aubergine og parmesan:95.0
+33:Prosciutto Crudo:Tomatsauce, mozzarella og parmaskinke:105.0
+34:Puttanesca:Tomatsauce, mozzarella, ansjoser, kapers og oliven:95.0
+35:Spinaci e Ricotta:Tomatsauce, mozzarella, ricotta og spinat:90.0
+36:Lardon e Brie:Tomatsauce, mozzarella, bacon og brie:100.0
+37:Feta e Olive:Tomatsauce, mozzarella, fetaost og sorte oliven:95.0
+38:Parmigiana di Melanzane:Tomatsauce, mozzarella, aubergine og parmesan:100.0
+39:Mista:Tomatsauce, mozzarella, skinke, pepperoni og grøntsager:100.0
+40:Tortilla:Tomatsauce, mozzarella, kylling, peberfrugt og guacamole:110.0
+41:Al Salmone:Tomatsauce, mozzarella, røget laks og dild:115.0
+42:Tonno e Cipolla:Tomatsauce, mozzarella, tun og rødløg:90.0
+43:Fantasia:Tomatsauce, mozzarella, tomater, artiskokker og parmaskinke:100.0
+44:Bufala:Tomatsauce, mozzarella di bufala og frisk basilikum:110.0
+45:Frutti di Bosco:Tomatsauce, mozzarella og bær (blåbær, hindbær og jordbær):100.0
+46:Pollo e Avocado:Tomatsauce, mozzarella, kylling og avocado:110.0
+47:Truffle & Mushroom:Tomatsauce, mozzarella, trøffelolie og svampe:120.0
+48:Salsiccia e Friarielli:Tomatsauce, mozzarella, italiensk pølse og broccoli:105.0
+49:Zucchini e Gorgonzola:Tomatsauce, mozzarella, zucchinier og gorgonzola:100.0
+50:Peperoncino:Tomatsauce, mozzarella, chili, peberfrugt og krydderurter:90.0

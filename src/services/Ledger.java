@@ -1,4 +1,7 @@
-package DishLogic;
+package services;
+
+import models.Dish;
+import models.Order;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -18,17 +21,17 @@ public class Ledger { //change name to LEDGER?
     }
 
 
-    public static void addDishToFile(DishDescription dish, String file) {
-        writeLineToFile(dish.addToFile(), file);
+    public static void addDishToFile(Dish dish, String fileName) {
+        writeLineToFile(dish.addToFile(), fileName);
     }
 
     //Returns a list of strings representing data from a file
-    public static ArrayList<String> getFileAsArrayListOfStrings(String file) {
+    public static ArrayList<String> getFileAsArrayListOfStrings(String fileName) {
         ArrayList<String> strings = new ArrayList<>();
         try {
             //Instantiating a File object (NOT THE FILE ITSELF), that contains information about the file
-            File myFile = new File(file);
-            createFile(file, myFile);
+            File myFile = new File(fileName);
+            createFile(fileName, myFile);
             //Instantiating a scanner that scans a file
             Scanner reader = new Scanner(myFile);
             //Goes though file, and adds every line to array, until there are no lines in file
@@ -36,7 +39,7 @@ public class Ledger { //change name to LEDGER?
                 String data = reader.nextLine();
                 strings.add(data);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("ERROR!!!");
             e.printStackTrace();
         }
@@ -58,11 +61,11 @@ public class Ledger { //change name to LEDGER?
 
 
     //creates new menu file where a specific dish is removed
-    public static void rewriteFileWithoutMissingID(ArrayList<DishDescription> dishes, String file) {
+    public static void rewriteFileWithoutMissingID(ArrayList<Dish> dishes, String fileName) {
 
         try {
-            FileWriter writer = new FileWriter(file);
-            for (DishDescription d : dishes) {
+            FileWriter writer = new FileWriter(fileName);
+            for (Dish d : dishes) {
                 writer.write(d.addToFile() + "\n");
             }
             writer.close();
@@ -73,9 +76,9 @@ public class Ledger { //change name to LEDGER?
     }
 
     //Goes through active orders file and finds a specific order, then removes it
-    public static void removeOrderFromActiveOrders(ArrayList<Order> orders, String file){
+    public static void removeOrderFromActiveOrders(ArrayList<Order> orders, String fileName){
         try {
-            FileWriter writer = new FileWriter(file);
+            FileWriter writer = new FileWriter(fileName);
             for (Order o : orders) {
                 writer.write(o.addToFile() + "\n");
             }
@@ -87,14 +90,14 @@ public class Ledger { //change name to LEDGER?
     }
 
     //Adding an order to its file (methods could be combined into one, using interfaces)
-    public static void addOrderToFile(Order order, String file) {
-        writeLineToFile(order.addToFile(), file);
+    public static void addOrderToFile(Order order, String fileName) {
+        writeLineToFile(order.addToFile(), fileName);
     }
 
     //Takes a sentence and adds it to a given file
-    private static void writeLineToFile(String line, String file) {
+    private static void writeLineToFile(String line, String fileName) {
         try {
-            FileWriter writer = new FileWriter(file, true);
+            FileWriter writer = new FileWriter(fileName, true);
             writer.write(line + "\n");
             writer.close();
         } catch (IOException e) {
@@ -104,8 +107,8 @@ public class Ledger { //change name to LEDGER?
     }
 
     //saves Order in statistics file
-    public static void saveForStatistics(Order order, String file) {
-        writeLineToFile(order.addToStatistics(), file);
+    public static void saveForStatistics(Order order, String fileName) {
+        writeLineToFile(order.addToStatistics(), fileName);
     }
 
 }
