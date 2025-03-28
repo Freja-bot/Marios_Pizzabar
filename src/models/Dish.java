@@ -1,6 +1,6 @@
-package DishLogic;
+package models;
 
-public class DishDescription implements Comparable<DishDescription> {
+public class Dish implements Comparable<Dish> {
 
     private int dishID;
     private String name;
@@ -8,7 +8,7 @@ public class DishDescription implements Comparable<DishDescription> {
     private String description;
 
     //a constructor creating a new dish
-    public DishDescription(int dishID, String name, String description, double price) {
+    public Dish(int dishID, String name, String description, double price) {
 
         this.dishID = dishID;
         this.name = name;
@@ -18,7 +18,7 @@ public class DishDescription implements Comparable<DishDescription> {
     }
 
     //constructor loading an old dish
-    public DishDescription(String lineFromFile) {
+    public Dish(String lineFromFile) {
         String[] createDish = lineFromFile.split(":");
         if (createDish.length == 4) {
             this.dishID = Integer.parseInt(createDish[0]);
@@ -59,7 +59,7 @@ public class DishDescription implements Comparable<DishDescription> {
     }
 
     @Override
-    public int compareTo(DishDescription o) {
+    public int compareTo(Dish o) {
         return dishID - o.getDishID();
     }
 }

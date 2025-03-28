@@ -1,34 +1,30 @@
-import DishLogic.DishDescription;
-import DishLogic.Menu;
-import DishLogic.Order;
+package services;
+
+import models.Dish;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Controller {
-
-    /*TODO:
-    - getUniqueID();
-    */
+public class UserInputController {
 
     //variables
-    private static Controller controller = null;
+    private static UserInputController userInputController = null;
     private Scanner scanner;
-    private ArrayList<DishDescription> menu;
+    private ArrayList<Dish> menu;
 
 
     //private constructor is used to control how many exists in this program
-    private Controller() {
+    private UserInputController() {
         this.scanner = new Scanner(System.in);
 
     }
 
-    //getInstance gives and if needed creates an instance of controller, this is to ensure there is only one
-    public static Controller getInstance() {
-        if (controller == null) {
-            controller = new Controller();
+    //getInstance gives and if needed creates an instance of userInputController, this is to ensure there is only one
+    public static UserInputController getInstance() {
+        if (userInputController == null) {
+            userInputController = new UserInputController();
         }
-        return controller;
+        return userInputController;
     }
 
     //
