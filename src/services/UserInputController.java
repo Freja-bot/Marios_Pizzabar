@@ -1,8 +1,6 @@
 package services;
 
-import models.Dish;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInputController {
@@ -10,7 +8,6 @@ public class UserInputController {
     //variables
     private static UserInputController userInputController = null;
     private Scanner scanner;
-    private ArrayList<Dish> menu;
 
 
     //private constructor is used to control how many exists in this program

@@ -1,5 +1,5 @@
 package models;
-import services.UniqueID;
+import services.ActiveOrders;
 import services.Menu;
 
 import java.time.LocalDate;
@@ -13,12 +13,13 @@ public class Order implements Comparable<Order> {
     private LocalDate date;
     private LocalTime collectionTime;
     private ArrayList<OrderLine> orderLines;
+    private int newOrderID;
 
 
     //Constuctor for creating new order
     public Order(int hour, int minute) {
 
-        this.orderID = UniqueID.getOrderID();
+        this.orderID = getNewOrderID();
         this.date = LocalDate.now();
         collectionTime = LocalTime.of(hour, minute);
         //If collection time is set to earlier than today, ths program assumes that it
@@ -123,6 +124,30 @@ public class Order implements Comparable<Order> {
         }
         return temp + ":" + getTotalPrice();
     }
+
+    public int getNewOrderID() {
+        //Vi skal lave et loop som gå igennem alle bestillinger og finder det højeste nummer og lægger 1 til.
+        //Derpå får man et unikt ID. For/ Each loop.
+        ArrayList<Order> Orders = ActiveOrders.getOrders();
+
+        if(Orders.isEmpty()){
+            newOrderID=1;
+        } else {
+
+            Order highestOrder = Orders.get(0);
+            for(Order activeOrder: Orders)
+
+            {
+                if(highestOrder.getOrderID()<activeOrder.getOrderID()){
+                    highestOrder = activeOrder;}
+
+            }
+
+            newOrderID = highestOrder.getOrderID()+1;}
+
+        return newOrderID;
+    }
+
 
 }
 

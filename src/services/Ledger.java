@@ -1,7 +1,5 @@
 package services;
 
-import models.Dish;
-import models.Order;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,17 +11,13 @@ public class Ledger { //change name to LEDGER?
 
     //TODO
     //save to statistics
-    private Ledger(){
+    private Ledger() {
 
 
-    //Adding a dish to a file
+        //Adding a dish to a file
 
     }
 
-
-    public static void addDishToFile(Dish dish, String fileName) {
-        writeLineToFile(dish.addToFile(), fileName);
-    }
 
     //Returns a list of strings representing data from a file
     public static ArrayList<String> getFileAsArrayListOfStrings(String fileName) {
@@ -60,13 +54,11 @@ public class Ledger { //change name to LEDGER?
     }
 
 
-    //creates new menu file where a specific dish is removed
-    public static void rewriteFileWithoutMissingID(ArrayList<Dish> dishes, String fileName) {
-
+    public static void writeArrayToFile(ArrayList<String> lines, String fileName) {
         try {
             FileWriter writer = new FileWriter(fileName);
-            for (Dish d : dishes) {
-                writer.write(d.addToFile() + "\n");
+            for (String line : lines) {
+                writer.write(line + "\n");
             }
             writer.close();
         } catch (IOException e) {
@@ -75,40 +67,15 @@ public class Ledger { //change name to LEDGER?
         }
     }
 
-    //Goes through active orders file and finds a specific order, then removes it
-    public static void removeOrderFromActiveOrders(ArrayList<Order> orders, String fileName){
-        try {
-            FileWriter writer = new FileWriter(fileName);
-            for (Order o : orders) {
-                writer.write(o.addToFile() + "\n");
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("ERROR!!");
-            e.printStackTrace();
-        }
+//Takes a sentence and adds it to a given file
+public static void writeLineToFile(String line, String fileName) {
+    try {
+        FileWriter writer = new FileWriter(fileName, true);
+        writer.write(line + "\n");
+        writer.close();
+    } catch (IOException e) {
+        System.out.println("ERROR!!!");
+        e.printStackTrace();
     }
-
-    //Adding an order to its file (methods could be combined into one, using interfaces)
-    public static void addOrderToFile(Order order, String fileName) {
-        writeLineToFile(order.addToFile(), fileName);
-    }
-
-    //Takes a sentence and adds it to a given file
-    private static void writeLineToFile(String line, String fileName) {
-        try {
-            FileWriter writer = new FileWriter(fileName, true);
-            writer.write(line + "\n");
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("ERROR!!!");
-            e.printStackTrace();
-        }
-    }
-
-    //saves Order in statistics file
-    public static void saveForStatistics(Order order, String fileName) {
-        writeLineToFile(order.addToStatistics(), fileName);
-    }
-
+}
 }

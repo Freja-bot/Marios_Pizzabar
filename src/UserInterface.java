@@ -1,24 +1,18 @@
 import models.*;
 import services.ActiveOrders;
 import services.Menu;
-import services.UniqueID;
 import services.UserInputController;
 
-import java.util.Scanner;
 
 public class UserInterface {
 
     //variables
     private static UserInputController userInputController = UserInputController.getInstance();
-    private static Scanner scanner = userInputController.getScanner();
-    private final static String MENU_FILE = "PizzaMenu.txt";
-    private final static String ACTIVE_ORDERS = "ActiveOrders.txt";
-    private final static String STATISTICS = "statistics.txt";
 
     //Pre-program tasks are completed
     public static void startProgram() {
-        Menu.loadMenuFromFile(MENU_FILE);
-        ActiveOrders.loadActiveOrders(ACTIVE_ORDERS);
+        Menu.loadMenuFromFile();
+        ActiveOrders.loadActiveOrders();
         menuInterface();
     }
 
@@ -35,7 +29,7 @@ public class UserInterface {
             Menu.showMenu();
             System.out.println("\nAKTIVE BESTILLINGER");
             ActiveOrders.showOrders();
-            System.out.println("0 - Exit, 1 - Tilføj bestilling, 2 - Fjern en færdiggjort bestilling, 3 - Fortryd en bestilling, 4 - services.Menu-indstillinger");
+            System.out.println("0 - Exit, 1 - Tilføj bestilling, 2 - Fjern en færdiggjort bestilling, 3 - Fortryd en bestilling, 4 - Menu-indstillinger");
             int userChoice = userInputController.getUserInput(4, 0);
 
             //a switch is like many if statements asking,
@@ -55,13 +49,13 @@ public class UserInterface {
                 case 2: {
                     System.out.println("Indtast OrderID");
                     int orderID = userInputController.getUserInput(50000, 0);
-                    ActiveOrders.finishOrder(orderID, ACTIVE_ORDERS, STATISTICS);
+                    ActiveOrders.finishOrder(orderID);
                     break;
                 }
                 case 3: {
                     System.out.println("Tast 0 for at fortyde - Indtast OrderID");
                     int orderID = userInputController.getUserInput(50000, 0);
-                    ActiveOrders.cancelOrder(orderID, ACTIVE_ORDERS);
+                    ActiveOrders.cancelOrder(orderID);
                     break;
                 }
                 case 4: {
@@ -97,7 +91,7 @@ public class UserInterface {
 
             switch (userChoice) {
                 case 1: {
-                    ActiveOrders.addNewOrderToFile(order, ACTIVE_ORDERS);
+                    ActiveOrders.addNewOrderToFile(order);
                     isRunning = false;
                     break;
                 }
@@ -144,7 +138,7 @@ public class UserInterface {
                     String description = userInputController.getNonEmptyString();
                     System.out.println("Indtast pris");
                     double price = userInputController.getUserInputAsDouble();
-                    Menu.addNewDishWithCustomID(new Dish(id, name, description, price), MENU_FILE);
+                    Menu.addNewDishWithCustomID(new Dish(id, name, description, price));
                     break;
                 }
                 case 2: {
@@ -154,7 +148,7 @@ public class UserInterface {
                     String description = userInputController.getNonEmptyString();
                     System.out.println("Indtast pris");
                     double price = userInputController.getUserInputAsDouble();
-                    Menu.addNewDishToMenu(new Dish(UniqueID.getDishID(), name, description, price), MENU_FILE);
+                    Menu.addNewDishToMenu(new Dish(0,name, description, price));
                     break;
                 }
                 case 3: {
@@ -163,7 +157,7 @@ public class UserInterface {
                     if (remove == 0) {
                         break;
                     }
-                    Menu.removeDish(remove, MENU_FILE);
+                    Menu.removeDish(remove);
                     break;
                 }
                 default: {
